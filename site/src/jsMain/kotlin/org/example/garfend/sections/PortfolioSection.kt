@@ -12,6 +12,7 @@ import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.icons.fa.FaArrowLeft
 import com.varabyte.kobweb.silk.components.icons.fa.FaArrowRight
 import com.varabyte.kobweb.silk.components.icons.fa.IconSize
@@ -19,6 +20,7 @@ import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import kotlinx.browser.document
+import org.example.garfend.components.LocalLanguage
 import org.example.garfend.components.portfolioCard
 import org.example.garfend.components.sectionTitle
 import org.example.garfend.models.Portfolio
@@ -83,9 +85,12 @@ fun portfolioCards(breakpoint: Breakpoint) {
     ) {
         Portfolio.entries.forEach { portfolio ->
             portfolioCard(
-                modifier = Modifier.margin(
-                    right = if (portfolio != Portfolio.Five) 25.px else 0.px
-                ),
+                modifier = Modifier.styleModifier {
+                    // Use logical property for RTL-aware spacing
+                    if (portfolio != Portfolio.entries.last()) {
+                        property("margin-inline-end", 25.px.toString())
+                    }
+                },
                 portfolio = portfolio,
             )
         }
@@ -94,28 +99,67 @@ fun portfolioCards(breakpoint: Breakpoint) {
 
 @Composable
 fun portfolioNavigation() {
+    val language = LocalLanguage.current
+
+    // In RTL: left arrow scrolls right (+325), right arrow scrolls left (-325)
+    // In LTR: left arrow scrolls left (-325), right arrow scrolls right (+325)
+    val leftArrowScroll = if (language.isRTL) 325.0 else -325.0
+    val rightArrowScroll = if (language.isRTL) -325.0 else 325.0
+
     Row(
         modifier = Modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.Center
     ) {
-        FaArrowLeft(
-            modifier = PortfolioArrowIconStyle.toModifier()
-                .margin(right = 40.px)
-                .cursor(Cursor.Pointer)
-                .onClick {
-                    document.getElementById("scrollableContainer")
-                        ?.scrollBy(x = (-325.0), y = 0.0)
-                },
-            size = IconSize.LG
-        )
-        FaArrowRight(
-            modifier = PortfolioArrowIconStyle.toModifier()
-                .cursor(Cursor.Pointer)
-                .onClick {
-                    document.getElementById("scrollableContainer")
-                        ?.scrollBy(x = 325.0, y = 0.0)
-                },
-            size = IconSize.LG
-        )
+        // First arrow: In LTR shows left arrow, in RTL shows right arrow
+        if (language.isRTL) {
+            FaArrowRight(
+                modifier = PortfolioArrowIconStyle.toModifier()
+                    .styleModifier {
+                        property("margin-inline-end", 40.px.toString())
+                    }
+                    .cursor(Cursor.Pointer)
+                    .onClick {
+                        document.getElementById("scrollableContainer")
+                            ?.scrollBy(x = leftArrowScroll, y = 0.0)
+                    },
+                size = IconSize.LG
+            )
+        } else {
+            FaArrowLeft(
+                modifier = PortfolioArrowIconStyle.toModifier()
+                    .styleModifier {
+                        property("margin-inline-end", 40.px.toString())
+                    }
+                    .cursor(Cursor.Pointer)
+                    .onClick {
+                        document.getElementById("scrollableContainer")
+                            ?.scrollBy(x = leftArrowScroll, y = 0.0)
+                    },
+                size = IconSize.LG
+            )
+        }
+
+        // Second arrow: In LTR shows right arrow, in RTL shows left arrow
+        if (language.isRTL) {
+            FaArrowLeft(
+                modifier = PortfolioArrowIconStyle.toModifier()
+                    .cursor(Cursor.Pointer)
+                    .onClick {
+                        document.getElementById("scrollableContainer")
+                            ?.scrollBy(x = rightArrowScroll, y = 0.0)
+                    },
+                size = IconSize.LG
+            )
+        } else {
+            FaArrowRight(
+                modifier = PortfolioArrowIconStyle.toModifier()
+                    .cursor(Cursor.Pointer)
+                    .onClick {
+                        document.getElementById("scrollableContainer")
+                            ?.scrollBy(x = rightArrowScroll, y = 0.0)
+                    },
+                size = IconSize.LG
+            )
+        }
     }
 }
