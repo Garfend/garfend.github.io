@@ -71,7 +71,7 @@ fun sectionTitle(
                 .transition(Transition.of(property = "margin", duration = 300.ms))
                 .toAttrs()
         ) {
-            Text(section.title)
+            Text(stringResource(section.titleKey))
         }
         Box(
             modifier = Modifier

@@ -2,8 +2,10 @@ package org.example.garfend.components
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.FontWeight
+import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.css.TextDecorationLine
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
+import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.foundation.layout.Spacer
@@ -18,6 +20,8 @@ import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.components.navigation.Link
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
+import org.example.garfend.components.LocalLanguage
+import org.example.garfend.models.Language
 import org.example.garfend.models.Theme
 import org.example.garfend.styles.AboutTextStyle
 import org.example.garfend.styles.NavigationItemStyle
@@ -29,7 +33,7 @@ import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
 
 @Composable
-fun socialBar(row: Boolean = false, title: Boolean = false) {
+fun socialBar(row: Boolean = false, title: Boolean = false, breakpoint: Breakpoint) {
     if (row) {
         Row(
             modifier = Modifier
@@ -41,7 +45,7 @@ fun socialBar(row: Boolean = false, title: Boolean = false) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            socialLinks(row = true, title = title)
+            socialLinks(row = true, title = title, breakpoint = breakpoint)
         }
     } else {
         Column(
@@ -54,7 +58,7 @@ fun socialBar(row: Boolean = false, title: Boolean = false) {
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            socialLinks(title = title)
+            socialLinks(title = title, breakpoint = breakpoint)
         }
     }
 }
@@ -62,7 +66,8 @@ fun socialBar(row: Boolean = false, title: Boolean = false) {
 @Composable
 private fun socialLinks(
     row: Boolean = false,
-    title: Boolean = false
+    title: Boolean = false,
+    breakpoint: Breakpoint
 ) {
     Row {
         Link(
@@ -88,6 +93,7 @@ private fun socialLinks(
                     .fontSize(20.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.Primary.rgb)
+                    .textAlign(textAlign = if (breakpoint > Breakpoint.MD) TextAlign.Center else TextAlign.Left)
                     .toAttrs()
             ) {
 
@@ -97,26 +103,28 @@ private fun socialLinks(
                     modifier = LinkOverrideStyle.toModifier()
                         .then(Modifier.textDecorationLine(TextDecorationLine.None))
                 ) {
-                    Text("Garfend")
+                    Text("Abdelrahman Abdelwahab github")
                 }
             }
         }
 
     }
-
+    if (LocalLanguage.current == Language.ARABIC) {
+        if (row) {
+            Box(modifier = Modifier.padding(leftRight = 8.px))
+        }
+    }
     Row {
         Link(
             path = "https://www.linkedin.com/in/abdelrahman-abdelwahab-abo-ibrahim-91a01a214/",
             openExternalLinksStrategy = OpenLinkStrategy.IN_NEW_TAB,
 
-        ) {
+            ) {
             FaLinkedin(
                 modifier = SocialLinkStyle.toModifier(),
                 size = IconSize.LG
             )
         }
-
-
         if (
             title
         ) {
@@ -127,6 +135,7 @@ private fun socialLinks(
                     .fontSize(20.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.Primary.rgb)
+                    .textAlign(textAlign = if (breakpoint > Breakpoint.MD) TextAlign.Center else TextAlign.Left)
                     .toAttrs()
             ) {
 
@@ -136,7 +145,7 @@ private fun socialLinks(
                     modifier = LinkOverrideStyle.toModifier()
                         .then(Modifier.textDecorationLine(TextDecorationLine.None))
                 ) {
-                    Text("Abdelrahman Abdelwahab")
+                    Text("Abdelrahman Abdelwahab linkedin")
                 }
             }
 

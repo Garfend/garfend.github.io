@@ -45,7 +45,7 @@ fun serviceCard(service: Service) {
             Image(
                 modifier = Modifier.size(40.px),
                 src = service.icon,
-                alt = service.imageDesc
+                alt = stringResource(service.imageDescKey)
             )
         }
         P(
@@ -57,7 +57,7 @@ fun serviceCard(service: Service) {
                 .fontWeight(FontWeight.Bold)
                 .toAttrs()
         ) {
-            Text(service.title)
+            Text(stringResource(service.titleKey))
         }
         P(
             attrs = Modifier
@@ -68,7 +68,7 @@ fun serviceCard(service: Service) {
                 .fontWeight(FontWeight.Normal)
                 .toAttrs()
         ) {
-            Text(service.description)
+            Text(stringResource(service.descriptionKey))
         }
     }
 }
