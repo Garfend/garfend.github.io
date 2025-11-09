@@ -1,5 +1,9 @@
 package org.example.garfend.components
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import org.example.garfend.util.Constants.FONT_FAMILY
 import org.example.garfend.util.Res
 import com.varabyte.kobweb.compose.css.FontWeight
@@ -46,11 +50,15 @@ fun portfolioCard(
  * Portfolio card for cross-platform apps with 2 icons (Apple & Android)
  * Uses smooth opacity transitions for bidirectional animation
  */
+// kotlin
 @Composable
 private fun crossPlatformCard(
     modifier: Modifier = Modifier,
     portfolio: Portfolio,
 ) {
+    // track hovered platform: "ios", "android", or null
+    var hovered by remember { mutableStateOf<String?>(null) }
+
     Box(
         modifier = PortfolioCrossPlatformStyle.toModifier()
             .styleModifier {
@@ -97,7 +105,16 @@ private fun crossPlatformCard(
                                 .fillMaxWidth()
                                 .height(150.px)
                                 .backgroundColor(argb(a = 0.85f, r = 128, g = 128, b = 128))
-                                .textDecorationLine(TextDecorationLine.None),
+                                .textDecorationLine(TextDecorationLine.None)
+                                .onMouseEnter { hovered = "ios" }
+                                .onMouseLeave { hovered = null }
+                                .opacity(
+                                    when (hovered) {
+                                        null -> 100.percent
+                                        "ios" -> 100.percent
+                                        else -> 40.percent
+                                    }
+                                ),
                             path = portfolio.links.appStore ?: "",
                             openExternalLinksStrategy = OpenLinkStrategy.IN_NEW_TAB
                         ) {
@@ -108,14 +125,11 @@ private fun crossPlatformCard(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = com.varabyte.kobweb.compose.foundation.layout.Arrangement.SpaceBetween
                             ) {
-                                // Apple Logo
                                 Image(
-                                    modifier = Modifier
-                                        .size(64.px),
+                                    modifier = Modifier.size(64.px),
                                     src = Res.Icon.apple,
                                     alt = "Apple Logo"
                                 )
-                                // iOS Text
                                 P(
                                     attrs = Modifier
                                         .margin(0.px)
@@ -125,10 +139,8 @@ private fun crossPlatformCard(
                                         .fontWeight(FontWeight.Bold)
                                         .color(Theme.Secondary.rgb)
                                         .toAttrs()
-                                ) {
-                                    Text("IOS")
-                                }
-                                Box(modifier = Modifier.padding(all=0.px))
+                                ) { Text("IOS") }
+                                Box(modifier = Modifier.padding(all = 0.px))
                             }
                         }
 
@@ -138,7 +150,16 @@ private fun crossPlatformCard(
                                 .fillMaxWidth()
                                 .height(150.px)
                                 .backgroundColor(argb(a = 0.85f, r = 0, g = 100, b = 80))
-                                .textDecorationLine(TextDecorationLine.None),
+                                .textDecorationLine(TextDecorationLine.None)
+                                .onMouseEnter { hovered = "android" }
+                                .onMouseLeave { hovered = null }
+                                .opacity(
+                                    when (hovered) {
+                                        null -> 100.percent
+                                        "android" -> 100.percent
+                                        else -> 40.percent
+                                    }
+                                ),
                             path = portfolio.links.playStore ?: "",
                             openExternalLinksStrategy = OpenLinkStrategy.IN_NEW_TAB
                         ) {
@@ -149,14 +170,11 @@ private fun crossPlatformCard(
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = com.varabyte.kobweb.compose.foundation.layout.Arrangement.SpaceBetween
                             ) {
-                                // Android Logo
                                 Image(
-                                    modifier = Modifier
-                                        .size(64.px),
+                                    modifier = Modifier.size(64.px),
                                     src = Res.Icon.android,
                                     alt = "Android Logo"
                                 )
-                                // Android Text
                                 P(
                                     attrs = Modifier
                                         .margin(0.px)
@@ -166,10 +184,8 @@ private fun crossPlatformCard(
                                         .fontWeight(FontWeight.Bold)
                                         .color(Theme.Secondary.rgb)
                                         .toAttrs()
-                                ) {
-                                    Text("Android")
-                                }
-                                Box(modifier = Modifier.padding(all=0.px))
+                                ) { Text("Android") }
+                                Box(modifier = Modifier.padding(all = 0.px))
                             }
                         }
                     }
@@ -204,6 +220,7 @@ private fun crossPlatformCard(
         }
     }
 }
+
 
 /**
  * Portfolio card for single-link projects with green overlay hover
