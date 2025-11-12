@@ -99,7 +99,7 @@ enum class Portfolio(
         description = PortfolioCategory.MobileFlutter,
         links = PortfolioLinks(
             playStore = "https://play.google.com/store/apps/details?id=com.dabdoub.butchery&hl=en",
-            appStore = "https://apps.apple.com/sa/app/fromscratch/id6754660941?l"
+            appStore = "https://apps.apple.com/us/app/dabdoub-butchery-grills/id6754414950?l"
         ),
         titleKey = "portfolio_dabdoub"
     ),
