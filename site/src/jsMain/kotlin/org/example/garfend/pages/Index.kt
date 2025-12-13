@@ -6,7 +6,6 @@ import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.background
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.styleModifier
@@ -14,6 +13,7 @@ import com.varabyte.kobweb.core.Page
 import org.example.garfend.components.LocalLanguage
 import org.example.garfend.components.backToTopButton
 import org.example.garfend.components.overflowMenu
+import org.example.garfend.models.Theme
 import org.example.garfend.sections.*
 
 
@@ -28,7 +28,7 @@ fun homePage() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Colors.Black)
+                .background(Theme.LightGrayBg.rgb)
                 .styleModifier {
                     property("direction", if (language.isRTL) "rtl" else "ltr")
                 }
