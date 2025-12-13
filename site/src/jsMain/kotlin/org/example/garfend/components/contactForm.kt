@@ -1,144 +1,147 @@
 package org.example.garfend.components
 import androidx.compose.runtime.Composable
-import com.varabyte.kobweb.compose.css.Cursor
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import com.varabyte.kobweb.browser.uri.encodeURIComponent
+import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
+import com.varabyte.kobweb.compose.foundation.layout.Column
+import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.attrsModifier
-import com.varabyte.kobweb.compose.ui.graphics.Colors
-import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.height
+import com.varabyte.kobweb.compose.ui.modifiers.margin
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.style.toModifier
-import org.example.garfend.models.Theme
+import kotlinx.browser.window
 import org.example.garfend.styles.InputStyle
-import org.example.garfend.styles.MainButtonStyle
+import org.example.garfend.util.Constants.CONTACT_EMAIL
+import org.example.garfend.util.Constants.CONTACT_PHONE
 import org.jetbrains.compose.web.attributes.InputType
 import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.dom.*
+import org.jetbrains.compose.web.dom.Input
+import org.jetbrains.compose.web.dom.TextArea
 
 @Composable
 fun contactForm(breakpoint: Breakpoint) {
-    // Extract all string resources at the composable level
-    val formLabelName = stringResource("form_label_name")
+    var name by remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
+    var subject by remember { mutableStateOf("") }
+    var message by remember { mutableStateOf("") }
+
     val formPlaceholderName = stringResource("form_placeholder_name")
-    val formLabelEmail = stringResource("form_label_email")
     val formPlaceholderEmail = stringResource("form_placeholder_email")
-    val formLabelMessage = stringResource("form_label_message")
     val formPlaceholderMessage = stringResource("form_placeholder_message")
     val formButtonSubmit = stringResource("form_button_submit")
 
-    Form(
-        action = "https://formspree.io/f/xbljkgkl",
-        attrs = Modifier
-            .attrsModifier {
-                attr("method", "POST")
-            }
-            .toAttrs()
+    val isWideRow = breakpoint >= Breakpoint.MD
+
+    val inputModifier = InputStyle.toModifier()
+        .fillMaxWidth()
+
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Label(
-            attrs = Modifier
-                .classNames("form-label")
-                .color(Theme.Primary.rgb)
-                .toAttrs(),
-            forId = "inputName"
-        ) {
-            Text(formLabelName)
-        }
         Input(
             type = InputType.Text,
-            attrs = InputStyle.toModifier()
-                .id("inputName")
-                .classNames("form-control")
-                .margin(bottom = 10.px)
-                .width(
-                    if (breakpoint >= Breakpoint.MD) 500.px
-                    else 250.px
-                )
-                .border(0.px)
-                .boxShadow(0.px, 0.px, 0.px, 0.px, null)
-                .attrsModifier {
+            attrs = inputModifier
+                .margin(bottom = 14.px)
+                .toAttrs {
                     attr("placeholder", formPlaceholderName)
-                    attr("name", "name")
-                    attr("required", "true")
+                    value(name)
+                    onInput { event -> name = event.value }
                 }
-                .toAttrs()
-
         )
-        Label(
-            attrs = Modifier
-                .classNames("form-label")
-                .color(Theme.Primary.rgb)
-                .toAttrs(),
-            forId = "inputEmail"
-        ) {
-            Text(formLabelEmail)
-        }
-        Input(
-            type = InputType.Email,
-            attrs = InputStyle.toModifier()
-                .id("inputEmail")
-                .classNames("form-control")
-                .margin(bottom = 10.px)
-                .width(
-                    if (breakpoint >= Breakpoint.MD) 500.px
-                    else 250.px
-                )
-                .border(0.px)
-                .boxShadow(0.px, 0.px, 0.px, 0.px, null)
-                .attrsModifier {
-                    attr("placeholder", formPlaceholderEmail)
 
-                    attr("name", "email")
-                    attr("required", "true")
+        if (isWideRow) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(12.px)
+            ) {
+                Input(
+                    type = InputType.Email,
+                    attrs = inputModifier
+                        .weight(1f)
+                        .toAttrs {
+                            attr("placeholder", formPlaceholderEmail)
+                            value(email)
+                            onInput { event -> email = event.value }
+                        }
+                )
+                Input(
+                    type = InputType.Text,
+                    attrs = inputModifier
+                        .weight(1f)
+                        .toAttrs {
+                            attr("placeholder", "Subject")
+                            value(subject)
+                            onInput { event -> subject = event.value }
+                        }
+                )
                 }
-                .toAttrs()
-        )
-        Label(
-            attrs = Modifier
-                .classNames("form-label")
-                .color(Theme.Primary.rgb)
-
-                .toAttrs(),
-            forId = "inputMessage"
-        ) {
-            Text(formLabelMessage)
+        } else {
+            Input(
+                type = InputType.Email,
+                attrs = inputModifier
+                    .margin(bottom = 14.px)
+                    .toAttrs {
+                        attr("placeholder", formPlaceholderEmail)
+                        value(email)
+                        onInput { event -> email = event.value }
+                    }
+            )
+            Input(
+                type = InputType.Text,
+                attrs = inputModifier
+                    .margin(bottom = 14.px)
+                    .toAttrs {
+                        attr("placeholder", "Subject")
+                        value(subject)
+                        onInput { event -> subject = event.value }
+                    }
+            )
         }
-        TextArea (
-            attrs = InputStyle.toModifier()
-                .id("inputMessage")
-                .classNames("form-control")
-                .height(150.px)
-                .margin(bottom = 20.px)
-                .width(
-                    if (breakpoint >= Breakpoint.MD) 500.px
-                    else 250.px
-                )
-                .border(0.px)
-                .boxShadow(0.px, 0.px, 0.px, 0.px, null)
-                .attrsModifier {
+
+        TextArea(
+            attrs = inputModifier
+                .height(120.px)
+                .margin(top = 12.px)
+                .toAttrs {
                     attr("placeholder", formPlaceholderMessage)
-                    attr("name", "message")
-                    attr("required", "true")
+                    value(message)
+                    onInput { event -> message = event.value }
                 }
-                .toAttrs()
         )
+
         Box(
             modifier = Modifier.fillMaxWidth(),
             contentAlignment = Alignment.Center
         ) {
-            Button(
-                attrs = MainButtonStyle.toModifier()
-                    .height(40.px)
-                    .border(width = 0.px)
-                    .borderRadius(r = 5.px)
-                    .backgroundColor(Theme.DarkRed.rgb)
-                    .color(Colors.White)
-                    .cursor(Cursor.Pointer)
-                    .toAttrs()
-            ) {
-                Text(formButtonSubmit)
-            }
+            GlowingButton(
+                text = formButtonSubmit,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .margin(top = 16.px),
+                onClick = {
+                    val target = CONTACT_EMAIL
+                    val safeSubject = encodeURIComponent(subject.ifBlank { "Portfolio Contact" })
+                    val safeBody = encodeURIComponent(
+                        """
+                        Name: $name
+                        Email: $email
+                        Phone: $CONTACT_PHONE
+
+                        $message
+                        """.trimIndent()
+                    )
+                    window.location.href = "mailto:$target?subject=$safeSubject&body=$safeBody"
+                }
+            )
         }
     }
 }
