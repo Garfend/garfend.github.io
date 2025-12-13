@@ -19,6 +19,9 @@ import org.example.garfend.models.Experience
 import org.example.garfend.models.Language
 import org.example.garfend.models.Theme
 import org.example.garfend.components.LocalLanguage
+import org.example.garfend.styles.experienceDescriptionStyle
+import org.example.garfend.styles.experienceNumberBarStyle
+import org.example.garfend.styles.experienceNumberCircleStyle
 import org.jetbrains.compose.web.css.*
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
@@ -62,12 +65,12 @@ fun experienceDescription(
             .fillMaxWidth()
             .margin(topBottom = 14.px)
             .padding(all = 14.px)
-            .backgroundColor(if (active) Theme.LightRed.rgb else Theme.LightGray.rgb)
+            .experienceDescriptionStyle(active)
     ) {
         P(
             attrs = Modifier
                 .margin(topBottom = 0.px)
-                .fontFamily(FONT_FAMILY)
+                .fontFamily(*FONT_FAMILY)
                 .fontSize(14.px)
                 .lineHeight(1.6)
                 .fontWeight(FontWeight.Normal)
@@ -89,7 +92,7 @@ fun experienceDetails(
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .margin(left = if (breakpoint >= Breakpoint.MD) 14.px else 0.px),
+            .margin(left = if (breakpoint >= Breakpoint.MD) 20.px else 0.px),
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (breakpoint >= Breakpoint.MD) {
@@ -101,7 +104,7 @@ fun experienceDetails(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .margin(left = if(breakpoint <= Breakpoint.SM) 0.px else animatedMargin)
+                .margin(left = if(breakpoint <= Breakpoint.SM) 8.px else animatedMargin)
                 .transition(
                     Transition.of(
                         property = "margin",
@@ -115,7 +118,7 @@ fun experienceDetails(
             P(
                 attrs = Modifier
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(20.px)
                     .fontWeight(FontWeight.Bold)
                     .color(Theme.Primary.rgb)
@@ -126,7 +129,7 @@ fun experienceDetails(
             P(
                 attrs = Modifier
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(14.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.Primary.rgb)
@@ -137,7 +140,7 @@ fun experienceDetails(
             P(
                 attrs = Modifier
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(14.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.Primary.rgb)
@@ -164,7 +167,7 @@ fun experienceNumber(
             modifier = Modifier
                 .fillMaxHeight()
                 .width(3.px)
-                .backgroundColor(Theme.LightRed.rgb)
+                .experienceNumberBarStyle()
         )
         Box(
             modifier = Modifier
@@ -175,13 +178,14 @@ fun experienceNumber(
                     color = Theme.LightRed.rgb
                 )
                 .backgroundColor(if (active) Theme.LightRed.rgb else Colors.White)
-                .borderRadius(50.percent),
+                .borderRadius(50.percent)
+                .experienceNumberCircleStyle(active),
             contentAlignment = Alignment.Center
         ) {
             P(
                 attrs = Modifier
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(16.px)
                     .fontWeight(FontWeight.Bold)
                     .color(if (active) Colors.White else Theme.LightRed.rgb)
