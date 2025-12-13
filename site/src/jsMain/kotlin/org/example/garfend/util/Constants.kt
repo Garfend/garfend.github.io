@@ -3,7 +3,7 @@ package org.example.garfend.util
 object Constants {
 
     const val SECTION_WIDTH = 1920
-    const val FONT_FAMILY = "Roboto"
+    val FONT_FAMILY = arrayOf("Space Grotesk", "Cairo", "sans-serif")
 
     val listOfJobs = listOf(
         "Developing innovative user-centered mobile applications. \n" +
@@ -30,6 +30,8 @@ object Constants {
     const val MOBILE_DEV ="creating seamless, cross-platform mobile experiences using Flutter. From UI/UX design to backend integration, I ensure your app stands out in the competitive market."
     const val  ABOUT_ME_INFO = "Hello, I am Abdelrahman Abdelwahab, I am a Mobile App Developer with a strong background in creating innovative, user-centered mobile applications. With expertise in Mobile development using Kotlin and Java for Android, and Flutter for cross-platform, I build apps that are not only just functional but also visually engaging and responsive, Full project management from start to finish, Regular communication is important to me, so let’s keep in touch."
 
+    const val CONTACT_PHONE = "+201009483273"
+    const val CONTACT_EMAIL = "abdelrahmanabdelwahab1090@gmail.com"
 
 }
 
