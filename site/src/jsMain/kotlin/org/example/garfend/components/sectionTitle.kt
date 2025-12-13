@@ -64,7 +64,7 @@ fun sectionTitle(
                     bottom = 10.px,
                     top = 0.px
                 )
-                .fontFamily(FONT_FAMILY)
+                .fontFamily(*FONT_FAMILY)
                 .fontSize(40.px)
                 .fontWeight(FontWeight.Bold)
                 .color(Theme.Secondary.rgb)
