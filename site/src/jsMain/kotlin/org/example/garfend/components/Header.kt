@@ -75,7 +75,7 @@ fun LanguageSwitchButton(
 }
 
 @Composable
-fun header(onMenuClicked: () -> Unit) {
+fun header(onMenuClicked: () -> Unit, isMenuOpen: Boolean) {
     val breakpoint = rememberBreakpoint()
     Row(
         modifier = HeaderContainerStyle.toModifier()
@@ -89,7 +89,8 @@ fun header(onMenuClicked: () -> Unit) {
         } else {
             leftSide(
                 breakpoint = breakpoint,
-                onMenuClicked = onMenuClicked
+                onMenuClicked = onMenuClicked,
+                isMenuOpen = isMenuOpen
             )
         }
     }
@@ -98,17 +99,20 @@ fun header(onMenuClicked: () -> Unit) {
 @Composable
 fun leftSide(
     breakpoint: Breakpoint,
-    onMenuClicked: () -> Unit
+    onMenuClicked: () -> Unit,
+    isMenuOpen: Boolean
 ) {
     Row(
-        modifier = HeaderShellStyle.toModifier()
+        modifier = (
+            if (breakpoint <= Breakpoint.MD && isMenuOpen) Modifier else HeaderShellStyle.toModifier()
+        )
             .padding(topBottom = 14.px, leftRight = 20.px),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        if (breakpoint <= Breakpoint.MD) {
+        if (breakpoint <= Breakpoint.MD && !isMenuOpen) {
             FaBars(
                 modifier = Modifier
-                    .margin(right = 15.px)
+                    .margin(top = 8.px, bottom = 8.px)
                     .color(Colors.White)
                     .onClick {
                         onMenuClicked()

@@ -1,5 +1,6 @@
 package org.example.garfend.components
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -12,6 +13,7 @@ import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.ScrollBehavior
 import com.varabyte.kobweb.compose.css.TextDecorationLine
 import com.varabyte.kobweb.compose.css.Transition
+import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
@@ -22,6 +24,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
 import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.cursor
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxHeight
+import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
 import com.varabyte.kobweb.compose.ui.modifiers.fontSize
@@ -49,10 +52,12 @@ import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.browser.document
+import org.w3c.dom.HTMLElement
 import org.example.garfend.models.Section
-import org.example.garfend.models.Theme
 import org.example.garfend.styles.LinkOverrideStyle
 import org.example.garfend.styles.NavigationItemStyle
+import org.example.garfend.styles.SideMenuShellStyle
 import org.example.garfend.util.Constants.FONT_FAMILY
 import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.ms
@@ -71,6 +76,21 @@ fun overflowMenu(onMenuClosed: () -> Unit) {
     var translateX by remember { mutableStateOf(hiddenPosition) }
     var opacity by remember { mutableStateOf(0.percent) }
 
+    DisposableEffect(Unit) {
+        val html = document.documentElement as? HTMLElement
+        val body = document.body as? HTMLElement
+        val previousHtmlOverflow = html?.style?.getPropertyValue("overflow") ?: ""
+        val previousBodyOverflow = body?.style?.getPropertyValue("overflow") ?: ""
+
+        html?.style?.setProperty("overflow", "hidden")
+        body?.style?.setProperty("overflow", "hidden")
+
+        onDispose {
+            if (html != null) html.style.setProperty("overflow", previousHtmlOverflow)
+            if (body != null) body.style.setProperty("overflow", previousBodyOverflow)
+        }
+    }
+
     LaunchedEffect(breakpoint) {
         translateX = 0.percent
         opacity = 100.percent
@@ -78,22 +98,48 @@ fun overflowMenu(onMenuClosed: () -> Unit) {
             scope.launch {
                 translateX = hiddenPosition
                 opacity = 0.percent
-                delay(500)
+                delay(100)
                 onMenuClosed()
             }
         }
     }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.vh)
             .position(Position.Fixed)
             .zIndex(2)
             .opacity(opacity)
-            .backgroundColor(argb(a = 0.5f, r = 0.0f, g = 0.0f, b = 0.0f))
             .transition(Transition.of(property = "opacity", duration = 500.ms))
+            .styleModifier {
+                property("top", "0")
+                property("left", "0")
+                property("right", "0")
+                property("bottom", "0")
+            }
     ) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .backgroundColor(argb(a = 0.5f, r = 0.0f, g = 0.0f, b = 0.0f))
+                .onClick {
+                    scope.launch {
+                        translateX = hiddenPosition
+                        opacity = 0.percent
+                        delay(100)
+                        onMenuClosed()
+                    }
+                }
+                .styleModifier {
+                    property("position", "absolute")
+                    property("top", "0")
+                    property("left", "0")
+                    property("right", "0")
+                    property("bottom", "0")
+                }
+        )
+
         Column(
             modifier = Modifier
                 .fillMaxHeight()
@@ -101,7 +147,26 @@ fun overflowMenu(onMenuClosed: () -> Unit) {
                 .width(if (breakpoint < Breakpoint.MD) 50.percent else 25.percent)
                 .overflow(Overflow.Auto)
                 .scrollBehavior(ScrollBehavior.Smooth)
-                .backgroundColor(Theme.LightGray.rgb)
+                .styleModifier {
+                    property("overscroll-behavior", "contain")
+                    property("position", "relative")
+                    property("z-index", "1")
+                }
+                .then(SideMenuShellStyle.toModifier())
+                .styleModifier {
+                    if (language.isRTL) {
+                        property("border-top-left-radius", "32px")
+                        property("border-bottom-left-radius", "32px")
+                        property("border-top-right-radius", "0px")
+                        property("border-bottom-right-radius", "0px")
+                    } else {
+                        property("border-top-left-radius", "0px")
+                        property("border-bottom-left-radius", "0px")
+                        property("border-top-right-radius", "32px")
+                        property("border-bottom-right-radius", "32px")
+                    }
+                }
+
                 .translateX(tx = translateX)
                 .transition(Transition.of(property = "translate", duration = 500.ms))
         ) {
@@ -120,7 +185,7 @@ fun overflowMenu(onMenuClosed: () -> Unit) {
                             scope.launch {
                                 translateX = hiddenPosition
                                 opacity = 0.percent
-                                delay(500)
+                                delay(100)
                                 onMenuClosed()
                             }
                         },
@@ -149,7 +214,7 @@ fun overflowMenu(onMenuClosed: () -> Unit) {
                             scope.launch {
                                 translateX = hiddenPosition
                                 opacity = 0.percent
-                                delay(500)
+                                delay(100)
                                 onMenuClosed()
                             }
                         },

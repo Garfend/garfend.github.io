@@ -8,6 +8,7 @@ import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.style.CssStyle
 import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.css.percent
 
 private fun Modifier.glassBase() = this
     .borderRadius(r = 50.px)
@@ -42,6 +43,20 @@ val HeaderNavShellStyle = CssStyle {
             .styleModifier {
                 property("gap", "30px")
             }
+    }
+}
+
+val SideMenuShellStyle = CssStyle {
+    base {
+        Modifier
+            .glassBase()
+//            .styleModifier {
+//                property("border-top-left-radius", "0px")
+//                property("border-bottom-left-radius", "0px")
+//                property("border-top-right-radius", "32px")
+//                property("border-bottom-right-radius", "32px")
+//                property("height", "100%")
+//            }
     }
 }
 
