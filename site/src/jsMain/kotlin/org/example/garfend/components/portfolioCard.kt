@@ -1,5 +1,6 @@
 package org.example.garfend.components
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -8,6 +9,7 @@ import org.example.garfend.util.Constants.FONT_FAMILY
 import org.example.garfend.util.Res
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.ObjectFit
+import com.varabyte.kobweb.compose.css.Overflow
 import com.varabyte.kobweb.compose.css.TextAlign
 import com.varabyte.kobweb.compose.css.TextDecorationLine
 import com.varabyte.kobweb.compose.css.Width
@@ -54,12 +56,13 @@ private fun getFormattedTitle(portfolio: Portfolio): String {
 fun portfolioCard(
     modifier: Modifier = Modifier,
     portfolio: Portfolio,
+    appearDelayMs: Int = 0
 ) {
     // Check if this is a cross-platform app (has both store links)
     if (portfolio.links.isCrossPlatform()) {
-        crossPlatformCard(modifier, portfolio)
+        crossPlatformCard(modifier, portfolio, appearDelayMs)
     } else {
-        singleLinkCard(modifier, portfolio)
+        singleLinkCard(modifier, portfolio, appearDelayMs)
     }
 }
 
@@ -72,14 +75,26 @@ fun portfolioCard(
 private fun crossPlatformCard(
     modifier: Modifier = Modifier,
     portfolio: Portfolio,
+    appearDelayMs: Int
 ) {
     // track hovered platform: "ios", "android", or null
     var hovered by remember { mutableStateOf<String?>(null) }
+    var visible by remember { mutableStateOf(false) }
+
+    LaunchedEffect(Unit) { visible = true }
 
     Box(
         modifier = PortfolioCrossPlatformStyle.toModifier()
             .styleModifier {
                 property("display", "inline-block")
+            }
+            .styleModifier {
+                property("transform", if (visible) "translateY(0)" else "translateY(25px)")
+                property("opacity", if (visible) "1" else "0")
+                property(
+                    "transition",
+                    "transform 450ms ease ${appearDelayMs}ms, opacity 450ms ease ${appearDelayMs}ms"
+                )
             }
             .textDecorationLine(TextDecorationLine.None)
     ) {
@@ -94,6 +109,8 @@ private fun crossPlatformCard(
                     .fillMaxWidth()
                     .maxWidth(300.px)
                     .margin(bottom = 20.px)
+                    .borderRadius(18.px)
+                    .overflow(Overflow.Hidden)
             ) {
                 Image(
                     modifier = Modifier
@@ -151,7 +168,7 @@ private fun crossPlatformCard(
                                     attrs = Modifier
                                         .margin(0.px)
                                         .textAlign(TextAlign.Center)
-                                        .fontFamily(FONT_FAMILY)
+                                        .fontFamily(*FONT_FAMILY)
                                         .fontSize(28.px)
                                         .fontWeight(FontWeight.Bold)
                                         .color(Theme.Secondary.rgb)
@@ -196,7 +213,7 @@ private fun crossPlatformCard(
                                     attrs = Modifier
                                         .margin(0.px)
                                         .textAlign(TextAlign.Center)
-                                        .fontFamily(FONT_FAMILY)
+                                        .fontFamily(*FONT_FAMILY)
                                         .fontSize(28.px)
                                         .fontWeight(FontWeight.Bold)
                                         .color(Theme.Secondary.rgb)
@@ -213,7 +230,7 @@ private fun crossPlatformCard(
                     .id("portfolioTitle")
                     .fillMaxWidth()
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(18.px)
                     .fontWeight(FontWeight.Bold)
                     .toAttrs()
@@ -225,7 +242,7 @@ private fun crossPlatformCard(
                     .id("portfolioDesc")
                     .fillMaxWidth()
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(14.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.Secondary.rgb)
@@ -246,9 +263,21 @@ private fun crossPlatformCard(
 private fun singleLinkCard(
     modifier: Modifier = Modifier,
     portfolio: Portfolio,
+    appearDelayMs: Int
 ) {
+    var visible by remember { mutableStateOf(false) }
+    LaunchedEffect(Unit) { visible = true }
+
     Link(
         modifier = PortfolioSectionStyle.toModifier()
+            .styleModifier {
+                property("transform", if (visible) "translateY(0)" else "translateY(25px)")
+                property("opacity", if (visible) "1" else "0")
+                property(
+                    "transition",
+                    "transform 450ms ease ${appearDelayMs}ms, opacity 450ms ease ${appearDelayMs}ms"
+                )
+            }
             .textDecorationLine(TextDecorationLine.None),
         path = portfolio.links.getPrimaryLink() ?: "",
         openExternalLinksStrategy = OpenLinkStrategy.IN_NEW_TAB
@@ -264,6 +293,8 @@ private fun singleLinkCard(
                     .fillMaxWidth()
                     .maxWidth(300.px)
                     .margin(bottom = 20.px)
+                    .borderRadius(18.px)
+                    .overflow(Overflow.Hidden)
             ) {
                 Image(
                     modifier = Modifier
@@ -293,7 +324,7 @@ private fun singleLinkCard(
                     .id("portfolioTitle")
                     .fillMaxWidth()
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(18.px)
                     .fontWeight(FontWeight.Bold)
                     .toAttrs()
@@ -305,7 +336,7 @@ private fun singleLinkCard(
                     .id("portfolioDesc")
                     .fillMaxWidth()
                     .margin(topBottom = 0.px)
-                    .fontFamily(FONT_FAMILY)
+                    .fontFamily(*FONT_FAMILY)
                     .fontSize(14.px)
                     .fontWeight(FontWeight.Normal)
                     .color(Theme.Secondary.rgb)
