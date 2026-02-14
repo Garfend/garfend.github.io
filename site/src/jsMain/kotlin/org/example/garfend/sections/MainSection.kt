@@ -36,7 +36,6 @@ import org.example.garfend.components.GlowingButton
 import org.example.garfend.components.LocalLanguage
 import org.example.garfend.components.SocialIconButton
 import org.example.garfend.components.header
-import org.example.garfend.components.mainBackground
 import org.example.garfend.components.stringResource
 import org.example.garfend.models.Section
 import org.example.garfend.util.Constants.FONT_FAMILY
@@ -174,7 +173,7 @@ private fun ActionArea(alignStart: Boolean) {
     ) {
         GlowingButton(
             text = stringResource("hire_me"),
-            onClick = { window.location.href = Section.Contact.path }
+            onClick = { window.open("https://www.upwork.com/freelancers/~018456b0decc0006b0", "_blank") }
         )
         Box(modifier = Modifier.width(16.px))
         SocialIcons()
