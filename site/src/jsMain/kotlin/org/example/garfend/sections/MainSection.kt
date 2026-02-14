@@ -36,7 +36,6 @@ import org.example.garfend.components.GlowingButton
 import org.example.garfend.components.LocalLanguage
 import org.example.garfend.components.SocialIconButton
 import org.example.garfend.components.header
-import org.example.garfend.components.mainBackground
 import org.example.garfend.components.stringResource
 import org.example.garfend.models.Section
 import org.example.garfend.util.Constants.FONT_FAMILY
