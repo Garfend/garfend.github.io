@@ -111,6 +111,16 @@ object Strings {
             "achievement_satisfied" to "Satisfied Clients",
             "achievement_team" to "Team Members",
 
+            // Contact Section
+            "contact_title" to "Let's Connect",
+            "contact_description" to "I'm available for freelance work and collaborations. Reach out through any of these platforms:",
+            "contact_linkedin_label" to "LinkedIn",
+            "contact_linkedin_desc" to "Connect professionally",
+            "contact_upwork_label" to "Upwork",
+            "contact_upwork_desc" to "Hire me for projects",
+            "contact_email_label" to "Email",
+            "contact_email_desc" to "Send me a message",
+
             // Contact Form
             "form_label_name" to "Name",
             "form_placeholder_name" to "Full Name",
@@ -230,6 +240,16 @@ object Strings {
             "achievement_active" to "المشاريع النشطة",
             "achievement_satisfied" to "العملاء الراضون",
             "achievement_team" to "أعضاء الفريق",
+
+            // Contact Section
+            "contact_title" to "لنتواصل",
+            "contact_description" to "أنا متاح للعمل الحر والتعاون. تواصل معي عبر أي من هذه المنصات:",
+            "contact_linkedin_label" to "لينكد إن",
+            "contact_linkedin_desc" to "تواصل بشكل احترافي",
+            "contact_upwork_label" to "أب ورك",
+            "contact_upwork_desc" to "وظفني للمشاريع",
+            "contact_email_label" to "البريد الإلكتروني",
+            "contact_email_desc" to "أرسل لي رسالة",
 
             // Contact Form
             "form_label_name" to "الاسم",
