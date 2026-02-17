@@ -1,6 +1,11 @@
 package org.example.garfend.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import com.varabyte.kobweb.compose.css.Cursor
 import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.css.TextDecorationLine
@@ -33,6 +38,7 @@ import com.varabyte.kobweb.compose.ui.toAttrs
 import org.example.garfend.models.Language
 import org.jetbrains.compose.web.dom.Button
 import org.jetbrains.compose.web.dom.Text
+import kotlinx.browser.window
 
 @Composable
 fun LanguageSwitchButton(
@@ -126,6 +132,40 @@ fun leftSide(
 
 @Composable
 fun rightSide() {
+    // Track the current active section
+    var activeSection by remember { mutableStateOf("#home") }
+
+    // Setup scroll detection to determine which section is currently visible
+    LaunchedEffect(Unit) {
+        val sections = Section.entries.toTypedArray().take(6)
+
+        // Scroll listener to detect which section is in view
+        val scrollListener: (dynamic) -> Unit = { _ ->
+            sections.forEach { section ->
+                val element = window.document.getElementById(section.id)
+                if (element != null) {
+                    val rect = element.getBoundingClientRect()
+                    // Check if section is in viewport (considering header offset)
+                    if (rect.top <= 150 && rect.bottom >= 150) {
+                        activeSection = section.path
+                    }
+                }
+            }
+        }
+
+        // Hash change listener (for when clicking navigation)
+        val hashChangeListener: (dynamic) -> Unit = { _ ->
+            val hash = window.location.hash.ifEmpty { "#home" }
+            activeSection = hash
+        }
+
+        window.addEventListener("scroll", scrollListener)
+        window.addEventListener("hashchange", hashChangeListener)
+
+        // Initial check
+        scrollListener(null)
+    }
+
     Row(
         modifier = HeaderNavShellStyle.toModifier()
             .padding(topBottom = 16.px, leftRight = 34.px),
@@ -144,7 +184,7 @@ fun rightSide() {
                     .textDecorationLine(TextDecorationLine.None)
                 val activeModifier = linkModifier.then(ActiveHeaderLinkStyle.toModifier())
                 Link(
-                    modifier = if (section == Section.Home) {
+                    modifier = if (activeSection == section.path) {
                         activeModifier
                     } else {
                         linkModifier
