@@ -173,7 +173,12 @@ private fun ActionArea(alignStart: Boolean) {
     ) {
         GlowingButton(
             text = stringResource("hire_me"),
-            onClick = { window.open("https://www.upwork.com/freelancers/~018456b0decc0006b0", "_blank") }
+            onClick = {
+                // Scroll to contact section
+                kotlinx.browser.document.getElementById(Section.Contact.id)?.scrollIntoView(
+                    js("{behavior: 'smooth', block: 'start'}")
+                )
+            }
         )
         Box(modifier = Modifier.width(16.px))
         SocialIcons()
