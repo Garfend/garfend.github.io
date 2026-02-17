@@ -7,7 +7,10 @@ kotlin-js-store
 # Kobweb ignores
 kobweb-*.zip
 kobweb-cli/
-site/.kobweb/
+.kobweb/site/
+.kobweb/server/
+site/.kobweb/site/
+site/.kobweb/server/
 
 # Vercel ignores
 .vercel
