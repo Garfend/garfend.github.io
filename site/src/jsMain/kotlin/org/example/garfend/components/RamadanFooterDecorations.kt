@@ -13,23 +13,28 @@ import org.jetbrains.compose.web.css.px
 @Composable
 fun RamadanFooterDecorations() {
     val breakpoint = rememberBreakpoint()
+    val language = LocalLanguage.current
+    val isRTL = language.isRTL
 
-    // Fixed position - appears above footer, overlaying the contact section
     Box(
         modifier = Modifier
             .position(Position.Fixed)
-            .bottom(40.px) // Position above the footer (adjust based on footer height)
-            .left(50.px)
+            .bottom(40.px)
             .zIndex(100)
             .styleModifier {
                 property("animation", "fadeIn 1s ease-in-out")
-                property("pointer-events", "none") // Allow clicking through the animation
+                property("pointer-events", "none")
+                property("left", if (!isRTL) "50px" else "auto")
+                property("right", if (!isRTL) "auto" else "50px")
             }
     ) {
-        // Animation: moon_animation.json
         LottieAnimation(
             path = "/ramadan/moon_animation.json",
-            modifier = Modifier,
+            modifier = Modifier.styleModifier {
+                if (isRTL) {
+                    property("transform", "scaleX(-1)")
+                }
+            },
             width = if (breakpoint > Breakpoint.MD) 250.px else 150.px,
             height = if (breakpoint > Breakpoint.MD) 250.px else 150.px,
             loop = true,
