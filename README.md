@@ -1,136 +1,141 @@
-# Abdelrahman Abdelwahab - Portfolio Landing Page
+# Abdelrahman Abdelwahab - Mobile Developer Portfolio
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Portfolio-blue?style=for-the-badge)](https://garfend.github.io)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/abdelrahman-abdelwahab-abo-ibrahim-91a01a214/)
+[![Upwork](https://img.shields.io/badge/Upwork-Hire%20Me-6fda44?style=for-the-badge&logo=upwork)](https://www.upwork.com/freelancers/~018456b0decc0006b0)
 
-> A stunning, modern portfolio landing page showcasing the expertise and achievements of a
-> passionate Mobile App Developer.
+> A modern, responsive portfolio website built with Kotlin Multiplatform and Kobweb, showcasing my journey as a Mobile Application Developer specializing in Android and Flutter development.
 
-## 🎯 Landing Page Overview
+##  About This Project
 
-Welcome to my professional portfolio landing page! This carefully crafted digital showcase presents
-my journey, skills, and accomplishments as a Mobile App Developer specializing in Android, Flutter,
-and cross-platform development.
+This portfolio is more than just a website—it's a testament to my expertise in modern web and mobile development. Built entirely with **Kotlin Multiplatform** using the **Kobweb framework**, it demonstrates my ability to leverage cutting-edge technologies beyond traditional mobile development.
 
-## 🏠 What You'll Discover
+###  Built With
 
-### Hero Section - First Impressions Matter
+- **[Kobweb](https://github.com/varabyte/kobweb)** - Modern full-stack Kotlin framework for web development
+- **Kotlin/JS** - Leveraging Kotlin for type-safe web development
+- **Compose for Web** - Declarative UI framework (similar to Jetpack Compose for Android)
+- **Silk** - Kobweb's component library for polished UIs
+- **Vercel** - Deployment and hosting platform
 
-- **Personal Introduction**: "Hello, I'm Abdelrahman Abdelwahab"
-- **Professional Identity**: Mobile Developer/Designer
-- **Call-to-Action**: Direct "Hire me" button for immediate contact
-- **Social Media Integration**: Quick access to my professional networks
-- **Elegant Design**: Modern typography with a sleek dark theme
+###  Why Kotlin for Web?
 
-### About Me - My Story
+As a mobile developer deeply experienced with Kotlin and Jetpack Compose, I chose Kobweb to:
+- Leverage my existing Kotlin expertise for full-stack development
+- Use familiar Compose-style declarative UI patterns
+- Demonstrate versatility beyond mobile app development
+- Build a completely type-safe, modern web application
 
-- **Professional Background**: Detailed overview of my passion for creating innovative,
-  user-centered mobile applications
-- **Core Philosophy**: Building apps that are functional, visually engaging, and responsive
-- **Personal Touch**: Emphasis on full project management and regular communication
+##  What I Offer
 
-### Services Offered - What I Bring to the Table
+### Mobile App Development
+**Building production-ready mobile applications** using industry-standard tools and best practices:
+- **Android Native**: Kotlin, Jetpack Compose, XML, Material Design
+- **Cross-Platform**: Flutter, Compose Multiplatform (CMP)
+- **Architecture**: Clean Architecture, MVVM, MVI, Repository Pattern
+- **Backend Integration**: Firebase, Supabase, REST APIs, GraphQL
+- **State Management**: Bloc, Provider, Riverpod, GetX (Flutter), Flow & StateFlow (Android)
 
-#### 🔧 Mobile App Development
+### What Sets Me Apart
+- **Computer Engineering Background**: Strong problem-solving foundation from engineering discipline
+- **Clean Code Advocate**: Strong emphasis on maintainable, scalable, and well-documented code
+- **Full-Stack Capability**: Backend integration, API design, and database management
+- **End-to-End Ownership**: From initial concept to production deployment and maintenance
+- **Bilingual Support**: Native Arabic speaker with fluent English for international clients
 
-Professional Android development using Kotlin and Java, plus cross-platform solutions with Flutter.
-Every project is handled from concept to deployment with tailored solutions.
+##  Portfolio Highlights
 
-#### 🎨 UI/UX Design
+**Production Apps Serving Real Users:**
 
-Creating stunning, user-friendly interfaces for both Android and iOS applications. My designs
-prioritize functionality while delivering exceptional user experiences.
+| Project | Technology | Description | Status |
+|---------|-----------|-------------|--------|
+| **KN Libya** | Flutter | Healthcare application for the Libyan market | 🟢 Live |
+| **Dawaa Link** | Flutter | Medical platform connecting patients with healthcare providers | 🟢 Live |
+| **Dabdoub Butchery** | Flutter | E-commerce meat delivery application | 🟢 Live |
+| **MuseMagic** | Android/Jetpack Compose | Music discovery and history application | 🟢 Live |
+| **FromScratch** | Flutter | Innovative food & recipe application | 🟡 In Development |
+| **Titanium Gym** | UI/UX Design | Modern gym management interface | ✅ Design Complete |
 
-#### 📱 Cross-Platform Development
+*View detailed case studies and live demos at [garfend.github.io](https://garfend.github.io)*
 
-Specialized Flutter development for seamless mobile experiences across platforms, including backend
-integration and market-ready applications.
+##  Background & Experience
 
-### Portfolio Showcase - My Best Work
+- **Education**: B.S. in Computer Engineering
+- **Current Roles**:
+  - Freelance Mobile App Developer (Nov 2024 - Present)
+  - Flutter Developer at Ebda3 Tech (May 2024 - Present)
+- **Training**: Completed intensive bootcamps at The Chance, ITI, and DEPI
 
-**Interactive Project Gallery** featuring:
+##  Technical Stack
 
-1. **KN Libya** - Healthcare application serving the Libyan market (Flutter)
-2. **FromScratch** - Innovative food & recipe application (Flutter, Coming Soon)
-3. **Dawaa Link** - Medical platform connecting patients with healthcare providers (Flutter)
-4. **MuseMagic** - Music discovery and history application (Android/Jetpack Compose)
-5. **Dabdoub Butchery** - E-commerce meat delivery application (Flutter)
-6. **Titanium Gym** - Modern gym management interface design (UI/UX Design)
+**Languages**: Kotlin • Dart • Java • JavaScript • SQL • C++ • Python
 
-*Each project includes direct links to live apps, GitHub repositories, or design portfolios*
+**Mobile Development**: Android SDK • Flutter • Jetpack Compose • Compose Multiplatform • XML
 
-### Professional Journey - My Experience Timeline
+**Backend & Cloud**: Firebase • Supabase • REST APIs • GraphQL • Retrofit
 
-**Current Active Roles:**
+**Architecture & Patterns**: MVVM • MVI • Clean Architecture • Repository Pattern
 
-- **Mobile App Developer** (Freelancing) - November 2024 to Present
-- **Flutter Developer** at Ebda3 Tech - May 2024 to Present
+**Tools & DevOps**: Git • GitHub • Gradle • Android Studio • IntelliJ IDEA • CI/CD
 
-**Professional Development Path:**
+**UI/UX**: Material Design • Custom Animations • Responsive Design
 
-- Android App Development Training - The Chance Bootcamp
-- Frontend & Cross-Platform Development - ITI
-- Advanced Android & Cross-Platform Training - DEPI
+##  Portfolio Features
 
-### Contact Section - Let's Connect
+This website showcases:
 
-- **Direct Communication**: Built-in contact form for project inquiries
-- **Professional Networking**: Links to professional profiles
-- **Availability**: Clear indication of current availability for new projects
+- **Bilingual Support**: Full English and Arabic localization
+- **Responsive Design**: Seamless experience across desktop, tablet, and mobile
+- **Dark Theme**: Modern, professional aesthetic
+- **Interactive Portfolio**: Dynamic project gallery with live links
+- **Contact Integration**: Multiple ways to connect (LinkedIn, Upwork, Email)
+- **Performance Optimized**: Fast loading times and smooth animations
 
-## 🌟 Key Landing Page Features
+##  Project Structure
 
-### Visual Design Elements
+```
+site/
+├── src/
+│   ├── jsMain/kotlin/org/example/garfend/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── sections/       # Main page sections
+│   │   ├── pages/          # Application pages
+│   │   ├── models/         # Data models and theme definitions
+│   │   ├── styles/         # Component styles
+│   │   └── util/           # Utilities and constants
+│   └── jvmMain/kotlin/     # Server-side code
+└── .kobweb/               # Kobweb configuration
+```
 
-- **Modern Dark Theme**: Professional and eye-catching color scheme
-- **Responsive Layout**: Perfect viewing experience on mobile, tablet, and desktop
-- **Smooth Animations**: Engaging transitions and hover effects
-- **Clean Typography**: Easy-to-read fonts with proper hierarchy
+##  Running Locally
 
-### User Experience
+```bash
+# Clone the repository
+git clone https://github.com/Garfend/garfend.github.io.git
 
-- **Navigation Menu**: Smooth scrolling to different sections
-- **Back-to-Top Button**: Easy navigation for longer content
-- **Mobile-First Design**: Optimized for mobile viewing
-- **Fast Loading**: Optimized performance for quick access
+# Navigate to the site directory
+cd garfend.github.io/site
 
-### Interactive Elements
+# Run the development server
+kobweb run
 
-- **Portfolio Navigation**: Arrow controls for browsing projects
-- **Social Media Bar**: Quick access to professional networks
-- **Contact Form**: Direct communication channel
-- **Project Links**: External links to live applications and repositories
+# Build for production
+kobweb export
+```
 
-## 🎨 Design Philosophy
+##  Get In Touch
 
-The landing page embodies:
+I'm available for freelance projects, collaborations, and full-time opportunities.
 
-- **Professionalism**: Clean, modern design that reflects technical expertise
-- **Accessibility**: User-friendly navigation and readable content
-- **Personality**: Personal touches that show passion and dedication
-- **Functionality**: Every element serves a purpose in showcasing skills and facilitating contact
-
-## 📱 Mobile-Optimized Experience
-
-Special attention to mobile users with:
-
-- **Responsive Design**: Adapts beautifully to all screen sizes
-- **Touch-Friendly**: Large buttons and easy navigation
-- **Fast Loading**: Optimized for mobile networks
-- **Readable Content**: Proper font sizes and spacing for mobile viewing
-
-## 🚀 Call-to-Action Focus
-
-The landing page is designed to:
-
-- **Showcase Expertise**: Demonstrate technical skills through real projects
-- **Build Trust**: Professional presentation with verifiable work examples
-- **Generate Leads**: Clear paths for potential clients to make contact
-- **Tell a Story**: Coherent narrative of professional growth and capabilities
+- **LinkedIn**: [Abdelrahman Abdelwahab](https://www.linkedin.com/in/abdelrahman-abdelwahab-abo-ibrahim-91a01a214/)
+- **Upwork**: [Hire Me](https://www.upwork.com/freelancers/~018456b0decc0006b0)
+- **Email**: abdelrahmanabdelwahab1122@gmail.com
+- **GitHub**: [@Garfend](https://github.com/Garfend)
+- **Portfolio**: [garfend.github.io](https://garfend.github.io)
 
 ---
 
-**Ready to see it in action?** [Visit the live portfolio](https://garfend.github.io) and experience
-the journey of a passionate Mobile App Developer who turns ideas into reality!
+**Looking for a dedicated mobile developer who writes clean code and delivers results?**
+Let's build something amazing together.
 
-*"Full project management from start to finish. Regular communication is important to me, so let's
-keep in touch."*
+*"Full project management from start to finish. Regular communication is important to me, so let's keep in touch."*
