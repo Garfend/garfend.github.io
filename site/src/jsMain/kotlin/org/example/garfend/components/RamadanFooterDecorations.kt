@@ -18,7 +18,7 @@ fun RamadanFooterDecorations() {
     Box(
         modifier = Modifier
             .position(Position.Fixed)
-            .bottom(80.px) // Position above the footer (adjust based on footer height)
+            .bottom(40.px) // Position above the footer (adjust based on footer height)
             .left(50.px)
             .zIndex(100)
             .styleModifier {
