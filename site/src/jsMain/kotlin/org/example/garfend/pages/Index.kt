@@ -25,7 +25,7 @@ import org.example.garfend.sections.*
 fun homePage() {
     val language = LocalLanguage.current
     var menuOpened by remember { mutableStateOf(false) }
-    val ramadanThemeEnabled = rememberRamadanTheme()
+
 
     // Force recomposition when language changes using key()
     key(language) {
@@ -58,11 +58,6 @@ fun homePage() {
                 overflowMenu(onMenuClosed = { menuOpened = false })
             }
 
-            // Ramadan decorations
-            if (ramadanThemeEnabled.value) {
-                RamadanHeaderDecorations()
-                RamadanFooterDecorations() // Fixed positioned - overlays above footer
-            }
         }
     }
 }
