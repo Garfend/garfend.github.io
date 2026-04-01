@@ -26,5 +26,5 @@ fun rememberRamadanTheme(): MutableState<Boolean> {
 
 
 private fun isCurrentlyRamadanSeason(): Boolean {
-    return true
+    return false
 }
