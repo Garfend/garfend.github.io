@@ -3,64 +3,61 @@ package org.example.garfend.styles
 import com.varabyte.kobweb.compose.css.Transition
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.style.CssStyle
 import org.example.garfend.models.Theme
 import org.jetbrains.compose.web.css.ms
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 
-/**
- * Style for cross-platform portfolio cards with smooth bidirectional animations
- * Uses opacity instead of visibility for smooth fade in/out
- */
 val PortfolioCrossPlatformStyle = CssStyle {
-    // Green overlay: starts at 0px width, transitions to 300px on hover
+    // Overlay: starts at 0px width, expands to full on hover
     cssRule(" > #columnParent > #boxParent > #greenOverlay") {
         Modifier
             .width(0.px)
             .transition(Transition.of(property = "width", duration = 500.ms))
     }
-
     cssRule(":hover > #columnParent > #boxParent > #greenOverlay") {
         Modifier.width(300.px)
     }
 
-    // Link icon content: uses opacity for smooth fade in/out (not visibility)
+    // Link icon content: fade in/out with opacity
     cssRule(" > #columnParent > #boxParent > #greenOverlay > #linkIcon") {
         Modifier
             .opacity(0)
             .transition(Transition.of(property = "opacity", duration = 500.ms))
     }
-
     cssRule(":hover > #columnParent > #boxParent > #greenOverlay > #linkIcon") {
         Modifier.opacity(1)
     }
 
-    // Portfolio title animation
+    // Card-level hover: lift + amber border glow
+    cssRule(":hover") {
+        Modifier.styleModifier {
+            property("transform", "translateY(-4px)")
+            property("border-color", "rgba(240,168,104,0.55)")
+            property("box-shadow",
+                "inset 0 1px 0 rgba(255,255,255,0.18), " +
+                "inset 0 -1px 0 rgba(0,0,0,0.22), " +
+                "0 30px 60px -22px rgba(0,0,0,0.7), " +
+                "0 0 0 1px rgba(240,168,104,0.35)"
+            )
+        }
+    }
+
+    // Title color transition
     cssRule(" > #columnParent > #portfolioTitle") {
         Modifier
-            .color(Theme.Secondary.rgb)
+            .color(Theme.Primary.rgb)
             .translateX(0.percent)
             .transition(
                 Transition.of(property = "color", duration = 200.ms),
                 Transition.of(property = "translate", duration = 200.ms)
             )
     }
-
     cssRule(":hover > #columnParent > #portfolioTitle") {
         Modifier
-            .color(Theme.Primary.rgb)
-            .translateX(5.percent)
-    }
-
-    // Portfolio description animation
-    cssRule(" > #columnParent > #portfolioDesc") {
-        Modifier
-            .translateX(0.percent)
-            .transition(Transition.of(property = "translate", duration = 200.ms))
-    }
-
-    cssRule(":hover > #columnParent > #portfolioDesc") {
-        Modifier.translateX(5.percent)
+            .color(Theme.LightRed.rgb)
+            .translateX(4.percent)
     }
 }

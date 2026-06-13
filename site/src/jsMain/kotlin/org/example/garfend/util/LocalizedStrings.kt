@@ -8,6 +8,8 @@ object Strings {
             // Main Section
             "hello_im" to "Hello, I'm",
             "name" to "Abdelrahman Abdelwahab",
+            "hero_first_name" to "Abdelrahman",
+            "hero_last_name" to "Abdelwahab.",
             "job_title" to "Mobile Developer/Designer",
             "hire_me" to "Hire me",
 
@@ -33,6 +35,26 @@ object Strings {
             "subtitle_contact" to "Get in Touch",
             "subtitle_testimonial" to "Happy Customers",
             "subtitle_achievements" to "Personal Achievements",
+
+            // Section Eyebrows (numbered labels)
+            "eyebrow_about" to "01 — About me",
+            "eyebrow_service" to "02 — Service",
+            "eyebrow_portfolio" to "03 — Portfolio",
+            "eyebrow_experience" to "04 — Experience",
+            "eyebrow_contact" to "05 — Contact me",
+
+            // Section Main Titles
+            "main_title_about" to "Engineering precision.\nCreative design.",
+            "main_title_service" to "What I do.",
+            "main_title_portfolio" to "Selected work.",
+            "main_title_experience" to "Track record.",
+
+            // About Stats
+            "stat_label_apps_shipped" to "Production apps shipped",
+            "stat_label_years_building" to "Years building mobile",
+            "stat_label_training" to "Training programs completed",
+            "stat_label_curiosity" to "Curiosity for new tech",
+            "state_label_happy_clients" to "Happy clients",
 
             // Service Titles
             "service_mobile_dev_title" to "Mobile App Development",
@@ -73,37 +95,111 @@ object Strings {
             "status_in_development" to "In development",
             "status_in_testing" to "In testing",
 
+            // Portfolio Card - Cross-platform overlay & alts
+            "alt_app_store" to "App Store",
+            "alt_google_play" to "Google Play",
+            "platform_label_ios" to "iOS",
+            "platform_label_android" to "Android",
+            "link_view_case_study" to "View Project →",
+
+            // Portfolio Card - Chip labels (LinkType)
+            "chip_link_app_store" to "iOS",
+            "chip_link_play_store" to "Android",
+            "chip_link_github" to "GitHub",
+            "chip_link_website" to "Live preview",
+            "chip_link_figma" to "Figma",
+            "chip_link_other" to "View",
+
+            // Portfolio Card - Dev status title suffix
+            "dev_status_in_dev_suffix" to " (In dev)",
+            "dev_status_in_testing_suffix" to " (In testing)",
+
+            // Portfolio Detail - Section headings
+            "heading_about_app" to "About this app",
+            "heading_app_information" to "App information",
+
+            // Portfolio Detail - App Store loading/error states
+            "app_store_loading" to "Loading app data from App Store...",
+            "app_store_load_failed" to "⚠ Failed to load app data from App Store",
+            "app_store_description_loading" to "Loading description from App Store...",
+            "app_store_description_failed" to "⚠ Failed to load description from App Store. Please try again later.",
+            "loading_short" to "Loading...",
+            "app_store_fetching" to "Fetching from App Store...",
+            "app_store_data_label" to "App Store Data",
+            "failed_to_load_short" to "⚠ Failed to load",
+
+            // Portfolio Detail - "Version" label under rating block
+            "label_version" to "Version",
+
+            // Portfolio Detail - Info row labels
+            "label_developer" to "Developer",
+            "label_category" to "Category",
+            "label_platform" to "Platform",
+            "label_status" to "Status",
+            "label_details" to "Details",
+            "label_rating" to "Rating",
+            "label_price" to "Price",
+            "label_size" to "Size",
+            "label_requires_ios" to "Requires iOS",
+            "label_age_rating" to "Age Rating",
+            "label_genres" to "Genres",
+            "requires_ios_suffix" to " or later",
+
+            // Portfolio Detail - Platform values
+            "platform_ios_android" to "iOS & Android",
+            "platform_android" to "Android",
+            "platform_ios" to "iOS",
+            "platform_web" to "Web",
+            "platform_open_source" to "Open Source",
+            "platform_design" to "Design",
+            "platform_other" to "Other",
+
+            // Portfolio Detail - Status values
+            "status_available" to "Available",
+            "status_in_development_label" to "In Development",
+            "status_in_testing_label" to "In Testing",
+
+            // Footer
+            "footer_copyright" to "© 2026 — Abdelrahman Abdelwahab",
+
+            // Experience - intro + training label
+            "exp_intro" to "A few years of building, rescuing, and scaling production mobile apps — from healthcare platforms to cross-market client work.",
+            "exp_training_label" to "Training & certifications",
+
             // Experience - Job Positions
-            "exp_mobile_app_developer" to "Mobile App Developer",
-            "exp_flutter_developer" to "Flutter Developer",
-            "exp_android_trainee" to "Android App Development Trainee",
-            "exp_frontend_trainee" to "Front-end and cross-platform development trainee",
-            "exp_android_cross_trainee" to "Android and Cross-platform development trainee",
+            "exp_mobile_engineer" to "Mobile Engineer",
+            "exp_mobile_developer" to "Mobile Developer",
+            "exp_iti_track" to "Front-end & Cross-platform Development",
+            "exp_depi_track" to "Android & Cross-platform Development",
+            "exp_chance_track" to "Android App Development",
 
             // Experience - Companies
-            "exp_company_freelancing" to "freelancing",
+            "exp_company_cob" to "COB Solution",
+            "exp_company_freelancing" to "Freelancing",
             "exp_company_ebda3" to "Ebda3 Tech",
-            "exp_company_chance" to "The chance bootcamp",
             "exp_company_iti" to "ITI",
             "exp_company_depi" to "DEPI",
+            "exp_company_chance" to "The Chance Bootcamp",
 
             // Experience - Dates
-            "exp_date_november_2024" to "November 2024",
+            "exp_date_mar_2026" to "Mar 2026",
             "exp_date_may_2025" to "May 2025",
-            "exp_date_july_2023" to "July 2023",
-            "exp_date_february_2023" to "February 2023",
             "exp_date_feb_2025" to "Feb 2025",
             "exp_date_aug_2025" to "Aug 2025",
             "exp_date_apr_2024" to "Apr 2024",
             "exp_date_oct_2024" to "Oct 2024",
-            "exp_date_now" to "NOW",
+            "exp_date_feb_2023" to "Feb 2023",
+            "exp_date_jul_2023" to "Jul 2023",
+            "exp_date_2026" to "2026",
+            "exp_date_present" to "Present",
 
             // Experience - Job Descriptions
-            "exp_desc_1" to "Developing innovative user-centered mobile applications. \n With expertise in Mobile development using Kotlin and Java for Android, \n and Flutter for cross-platform.",
-            "exp_desc_2" to "Building and maintaining scalable, high-performance mobile apps using Flutter framework.\n",
-            "exp_desc_3" to "intense training in android frameworks such as kotlin, xml, jetpack compose and cmp.\nbuilding android projects from scratch using various techs in the process.",
-            "exp_desc_4" to "comprehensive training in program in Frontend and Cross-Platform development.\nusing React, Next, React Native for Front end and cross-platform development java based.\nusing Flutter framework and Dart programming language for mobile app development.\n",
-            "exp_desc_5" to "Developed advanced Android apps using Kotlin and jetpack compose, \nDemonstrated proficiency in Android frameworks \nApplied development best practices \nand applying clean code and clean architecture\n",
+            "exp_desc_cob" to "Building mobile apps for a US healthcare RCM platform serving clinics, labs, and pharmacies. HIPAA-conscious flows with secure auth, encrypted storage, and EHR-integrated billing APIs.",
+            "exp_desc_freelance" to "Full mobile ownership for client apps across MENA and USA — scalable Flutter architecture, full-stack Firebase, Stripe payments, and push automation. Rescued stalled projects and mentored junior developers.",
+            "exp_desc_ebda3" to "Built production Flutter apps for multinational clients with Clean Architecture, optimizing performance and shipping stable App Store / Google Play releases.",
+            "exp_desc_iti" to "Comprehensive training in Front-end and Cross-Platform development.\nUsing React, Next, and React Native for front-end and Java-based cross-platform development.\nUsing the Flutter framework and Dart programming language for mobile app development.",
+            "exp_desc_depi" to "Developed advanced Android apps using Kotlin and Jetpack Compose.\nDemonstrated proficiency in Android frameworks and applied development best practices,\napplying clean code and clean architecture.",
+            "exp_desc_chance" to "Intense training in Android frameworks such as Kotlin, XML, Jetpack Compose and CMP.\nBuilding Android projects from scratch using various technologies in the process.",
 
             // Achievements
             "achievement_completed" to "Completed Projects",
@@ -137,6 +233,8 @@ object Strings {
             // Main Section
             "hello_im" to "مرحباً، أنا",
             "name" to "عبدالرحمن عبدالوهاب",
+            "hero_first_name" to "عبدالرحمن",
+            "hero_last_name" to "عبدالوهاب.",
             "job_title" to "مطور تطبيقات محمولة/مصمم",
             "hire_me" to "وظفني",
 
@@ -162,6 +260,26 @@ object Strings {
             "subtitle_contact" to "ابق على تواصل",
             "subtitle_testimonial" to "عملاء سعداء",
             "subtitle_achievements" to "الإنجازات الشخصية",
+
+            // Section Eyebrows (numbered labels)
+            "eyebrow_about" to "01 — نبذة عني",
+            "eyebrow_service" to "02 — الخدمات",
+            "eyebrow_portfolio" to "03 — معرض الأعمال",
+            "eyebrow_experience" to "04 — الخبرة",
+            "eyebrow_contact" to "05 — تواصل معي",
+
+            // Section Main Titles
+            "main_title_about" to "هندسة دقيقة.\nتصميم إبداعي.",
+            "main_title_service" to "ما أقوم به.",
+            "main_title_portfolio" to "أعمال مختارة.",
+            "main_title_experience" to "سجل الإنجازات.",
+
+            // About Stats
+            "stat_label_apps_shipped" to "تطبيقات تم إطلاقها",
+            "stat_label_years_building" to "سنوات في تطوير الموبايل",
+            "stat_label_training" to "برامج تدريبية مكتملة",
+            "stat_label_curiosity" to "شغف بالتقنيات الجديدة",
+            "state_label_happy_clients" to "عملاء سعداء",
 
             // Service Titles
             "service_mobile_dev_title" to "تطوير تطبيقات الموبايل",
@@ -203,37 +321,111 @@ object Strings {
             "status_in_development" to "قيد التطوير",
             "status_in_testing" to "قيد الاختبار",
 
+            // Portfolio Card - Cross-platform overlay & alts
+            "alt_app_store" to "App Store",
+            "alt_google_play" to "Google Play",
+            "platform_label_ios" to "iOS",
+            "platform_label_android" to "Android",
+            "link_view_case_study" to "عرض المشروع ←",
+
+            // Portfolio Card - Chip labels (LinkType)
+            "chip_link_app_store" to "iOS",
+            "chip_link_play_store" to "Android",
+            "chip_link_github" to "GitHub",
+            "chip_link_website" to "معاينة مباشرة",
+            "chip_link_figma" to "Figma",
+            "chip_link_other" to "عرض",
+
+            // Portfolio Card - Dev status title suffix
+            "dev_status_in_dev_suffix" to " (قيد التطوير)",
+            "dev_status_in_testing_suffix" to " (قيد الاختبار)",
+
+            // Portfolio Detail - Section headings
+            "heading_about_app" to "حول هذا التطبيق",
+            "heading_app_information" to "معلومات التطبيق",
+
+            // Portfolio Detail - App Store loading/error states
+            "app_store_loading" to "جاري تحميل بيانات التطبيق من App Store...",
+            "app_store_load_failed" to "⚠ فشل تحميل بيانات التطبيق من App Store",
+            "app_store_description_loading" to "جاري تحميل الوصف من App Store...",
+            "app_store_description_failed" to "⚠ فشل تحميل الوصف من App Store. يرجى المحاولة مرة أخرى لاحقاً.",
+            "loading_short" to "جاري التحميل...",
+            "app_store_fetching" to "جاري الجلب من App Store...",
+            "app_store_data_label" to "بيانات App Store",
+            "failed_to_load_short" to "⚠ فشل التحميل",
+
+            // Portfolio Detail - "Version" label under rating block
+            "label_version" to "الإصدار",
+
+            // Portfolio Detail - Info row labels
+            "label_developer" to "المطور",
+            "label_category" to "الفئة",
+            "label_platform" to "المنصة",
+            "label_status" to "الحالة",
+            "label_details" to "التفاصيل",
+            "label_rating" to "التقييم",
+            "label_price" to "السعر",
+            "label_size" to "الحجم",
+            "label_requires_ios" to "يتطلب iOS",
+            "label_age_rating" to "التصنيف العمري",
+            "label_genres" to "الأنواع",
+            "requires_ios_suffix" to " أو أحدث",
+
+            // Portfolio Detail - Platform values
+            "platform_ios_android" to "iOS و Android",
+            "platform_android" to "Android",
+            "platform_ios" to "iOS",
+            "platform_web" to "ويب",
+            "platform_open_source" to "مفتوح المصدر",
+            "platform_design" to "تصميم",
+            "platform_other" to "أخرى",
+
+            // Portfolio Detail - Status values
+            "status_available" to "متاح",
+            "status_in_development_label" to "قيد التطوير",
+            "status_in_testing_label" to "قيد الاختبار",
+
+            // Footer
+            "footer_copyright" to "© 2026 — عبدالرحمن عبدالوهاب",
+
+            // Experience - intro + training label
+            "exp_intro" to "سنوات من بناء وإنقاذ وتوسيع تطبيقات الموبايل الإنتاجية — من منصات الرعاية الصحية إلى مشاريع العملاء عبر الأسواق.",
+            "exp_training_label" to "التدريب والشهادات",
+
             // Experience - Job Positions
-            "exp_mobile_app_developer" to "مطور تطبيقات محمولة",
-            "exp_flutter_developer" to "مطور Flutter",
-            "exp_android_trainee" to "متدرب تطوير Android",
-            "exp_frontend_trainee" to "متدرب تطوير الواجهة الأمامية ومتعدد المنصات",
-            "exp_android_cross_trainee" to "متدرب تطوير Android ومتعدد المنصات",
+            "exp_mobile_engineer" to "مهندس موبايل",
+            "exp_mobile_developer" to "مطور موبايل",
+            "exp_iti_track" to "تطوير الواجهة الأمامية ومتعدد المنصات",
+            "exp_depi_track" to "تطوير Android ومتعدد المنصات",
+            "exp_chance_track" to "تطوير تطبيقات Android",
 
             // Experience - Companies
+            "exp_company_cob" to "COB Solution",
             "exp_company_freelancing" to "عمل حر",
             "exp_company_ebda3" to "Ebda3 Tech",
-            "exp_company_chance" to "The chance bootcamp",
             "exp_company_iti" to "ITI",
             "exp_company_depi" to "DEPI",
+            "exp_company_chance" to "The Chance Bootcamp",
 
             // Experience - Dates
-            "exp_date_november_2024" to "نوفمبر 2024",
+            "exp_date_mar_2026" to "مارس 2026",
             "exp_date_may_2025" to "مايو 2025",
-            "exp_date_july_2023" to "يوليو 2023",
-            "exp_date_february_2023" to "فبراير 2023",
             "exp_date_feb_2025" to "فبراير 2025",
             "exp_date_aug_2025" to "أغسطس 2025",
             "exp_date_apr_2024" to "أبريل 2024",
             "exp_date_oct_2024" to "أكتوبر 2024",
-            "exp_date_now" to "الآن",
+            "exp_date_feb_2023" to "فبراير 2023",
+            "exp_date_jul_2023" to "يوليو 2023",
+            "exp_date_2026" to "2026",
+            "exp_date_present" to "الآن",
 
             // Experience - Job Descriptions
-            "exp_desc_1" to "تطوير تطبيقات محمولة مبتكرة تركز على المستخدم. \n مع خبرة في تطوير تطبيقات الموبايل باستخدام Kotlin و Java لـ Android، \n و Flutter لتطوير متعدد المنصات.",
-            "exp_desc_2" to "بناء وصيانة تطبيقات محمولة قابلة للتوسع وعالية الأداء باستخدام إطار عمل Flutter.\n",
-            "exp_desc_3" to "تدريب مكثف في أطر عمل Android مثل kotlin و xml و jetpack compose و cmp.\nبناء مشاريع Android من الصفر باستخدام تقنيات مختلفة في العملية.",
-            "exp_desc_4" to "تدريب شامل في برنامج تطوير الواجهة الأمامية ومتعدد المنصات.\nباستخدام React و Next و React Native للواجهة الأمامية والتطوير متعدد المنصات القائم على Java.\nباستخدام إطار عمل Flutter ولغة برمجة Dart لتطوير تطبيقات الموبايل.\n",
-            "exp_desc_5" to "تطوير تطبيقات Android متقدمة باستخدام Kotlin و Jetpack Compose، \nإظهار الكفاءة في أطر عمل Android \nتطبيق أفضل ممارسات التطوير \nوتطبيق الكود النظيف والبنية المعمارية النظيفة\n",
+            "exp_desc_cob" to "بناء تطبيقات موبايل لمنصة رعاية صحية أمريكية (RCM) تخدم العيادات والمعامل والصيدليات. تدفقات متوافقة مع HIPAA مع مصادقة آمنة وتخزين مشفّر وواجهات فوترة متكاملة مع EHR.",
+            "exp_desc_freelance" to "ملكية كاملة لتطبيقات العملاء عبر أسواق MENA وUSA — معمارية Flutter قابلة للتوسع، وحلول Firebase متكاملة، ومدفوعات Stripe، وأتمتة الإشعارات. إنقاذ مشاريع متعثرة وإرشاد المطورين المبتدئين.",
+            "exp_desc_ebda3" to "بناء تطبيقات Flutter إنتاجية لعملاء متعددي الجنسيات بمعمارية نظيفة، مع تحسين الأداء وإصدارات مستقرة على App Store / Google Play.",
+            "exp_desc_iti" to "تدريب شامل في تطوير الواجهة الأمامية ومتعدد المنصات.\nباستخدام React وNext وReact Native للواجهة الأمامية والتطوير متعدد المنصات القائم على Java.\nباستخدام إطار عمل Flutter ولغة Dart لتطوير تطبيقات الموبايل.",
+            "exp_desc_depi" to "تطوير تطبيقات Android متقدمة باستخدام Kotlin وJetpack Compose.\nإظهار الكفاءة في أطر عمل Android وتطبيق أفضل ممارسات التطوير،\nمع تطبيق الكود النظيف والمعمارية النظيفة.",
+            "exp_desc_chance" to "تدريب مكثف في أطر عمل Android مثل Kotlin وXML وJetpack Compose وCMP.\nبناء مشاريع Android من الصفر باستخدام تقنيات مختلفة في العملية.",
 
             // Achievements
             "achievement_completed" to "المشاريع المكتملة",

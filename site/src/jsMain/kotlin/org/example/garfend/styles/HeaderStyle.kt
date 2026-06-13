@@ -63,9 +63,9 @@ val SideMenuShellStyle = CssStyle {
 val ActiveHeaderLinkStyle = CssStyle {
     base {
         Modifier.styleModifier {
-            property("--silk-link-default-color", "rgb(255, 59, 92) !important")
-            property("--silk-link-visited-color", "rgb(255, 59, 92) !important")
-            property("color", "rgb(255, 59, 92) !important")
+            property("--silk-link-default-color", "rgb(240, 168, 104) !important")
+            property("--silk-link-visited-color", "rgb(240, 168, 104) !important")
+            property("color", "rgb(240, 168, 104) !important")
         }
     }
 }

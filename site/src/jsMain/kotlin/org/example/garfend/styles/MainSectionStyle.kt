@@ -21,8 +21,8 @@ import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.css.rgba
 import org.jetbrains.compose.web.css.rgb
 
-private val AccentColor = rgb(r = 255, g = 59, b = 92)
-private val MutedLinkColor = rgb(r = 170, g = 170, b = 170)
+private val AccentColor = rgb(r = 240, g = 168, b = 104)
+private val MutedLinkColor = rgb(r = 126, g = 130, b = 140)
 
 val NavigationItemStyle = CssStyle {
     base {
@@ -133,5 +133,53 @@ val MainImageStyle = CssStyle {
     }
     hover {
         Modifier.transform { scale(1.02) }
+    }
+}
+
+val FooterLinkStyle = CssStyle {
+    base {
+        Modifier
+            .styleModifier {
+                property("--silk-link-default-color", "$MutedLinkColor !important")
+                property("--silk-link-visited-color", "$MutedLinkColor !important")
+                property("color", "$MutedLinkColor !important")
+                property("text-decoration", "none !important")
+            }
+            .color(MutedLinkColor)
+            .transition(Transition.of(property = "color", duration = 200.ms))
+    }
+    hover {
+        Modifier
+            .styleModifier {
+                property("--silk-link-default-color", "$AccentColor !important")
+                property("--silk-link-visited-color", "$AccentColor !important")
+                property("color", "$AccentColor !important")
+                property("text-decoration", "none !important")
+            }
+            .color(AccentColor)
+    }
+}
+
+val FooterMonoLinkStyle = CssStyle {
+    base {
+        Modifier
+            .styleModifier {
+                property("--silk-link-default-color", "$MutedLinkColor !important")
+                property("--silk-link-visited-color", "$MutedLinkColor !important")
+                property("color", "$MutedLinkColor !important")
+                property("text-decoration", "none !important")
+            }
+            .color(MutedLinkColor)
+            .transition(Transition.of(property = "color", duration = 200.ms))
+    }
+    hover {
+        Modifier
+            .styleModifier {
+                property("--silk-link-default-color", "$AccentColor !important")
+                property("--silk-link-visited-color", "$AccentColor !important")
+                property("color", "$AccentColor !important")
+                property("text-decoration", "none !important")
+            }
+            .color(AccentColor)
     }
 }

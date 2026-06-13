@@ -10,12 +10,8 @@ import com.varabyte.kobweb.compose.ui.modifiers.*
 import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.core.Page
 import org.example.garfend.components.LocalLanguage
-import org.example.garfend.components.RamadanFooterDecorations
-import org.example.garfend.components.RamadanHeaderDecorations
 import org.example.garfend.components.backToTopButton
 import org.example.garfend.components.overflowMenu
-import org.example.garfend.components.rememberRamadanTheme
-import org.example.garfend.models.Theme
 import org.example.garfend.sections.*
 
 
@@ -32,9 +28,9 @@ fun homePage() {
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Theme.LightGrayBg.rgb)
                 .styleModifier {
                     property("direction", if (language.isRTL) "rtl" else "ltr")
+                    property("background", "transparent")
                 }
         ) {
             Column(

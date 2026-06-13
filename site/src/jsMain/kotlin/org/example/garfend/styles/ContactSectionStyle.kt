@@ -39,13 +39,13 @@ val InputStyle = CssStyle {
             width = 2.px,
             style = LineStyle.Solid,
             color = Theme.LightRed.rgb
-        ).backgroundColor(rgba(255, 59, 92, 0.08))
+        ).backgroundColor(rgba(240, 168, 104, 0.08))
     }
     hover {
         Modifier.border(
             width = 2.px,
             style = LineStyle.Solid,
             color = Theme.LightRed.rgb
-        ).backgroundColor(rgba(255, 59, 92, 0.06))
+        ).backgroundColor(rgba(240, 168, 104, 0.06))
     }
 }

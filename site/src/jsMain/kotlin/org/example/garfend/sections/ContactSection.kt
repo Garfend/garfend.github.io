@@ -2,40 +2,22 @@ package org.example.garfend.sections
 
 import androidx.compose.runtime.Composable
 import com.varabyte.kobweb.compose.css.FontWeight
-import com.varabyte.kobweb.compose.css.Transition
-import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
-import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
-import com.varabyte.kobweb.compose.ui.modifiers.color
-import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
-import com.varabyte.kobweb.compose.ui.modifiers.fontFamily
-import com.varabyte.kobweb.compose.ui.modifiers.fontSize
-import com.varabyte.kobweb.compose.ui.modifiers.fontWeight
-import com.varabyte.kobweb.compose.ui.modifiers.id
-import com.varabyte.kobweb.compose.ui.modifiers.margin
-import com.varabyte.kobweb.compose.ui.modifiers.maxWidth
-import com.varabyte.kobweb.compose.ui.modifiers.padding
-import com.varabyte.kobweb.compose.ui.modifiers.transition
-import com.varabyte.kobweb.compose.ui.modifiers.width
+import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.compose.ui.toAttrs
-import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
-import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
-import com.varabyte.kobweb.silk.components.icons.fa.IconSize
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.example.garfend.components.ContactIcons
-import org.example.garfend.components.SocialIconButton
 import org.example.garfend.components.sectionTitle
+import org.example.garfend.components.stringResource
 import org.example.garfend.models.Section
 import org.example.garfend.models.Theme
-import org.example.garfend.util.Constants.CONTACT_PHONE
 import org.example.garfend.util.Constants.FONT_FAMILY
 import org.example.garfend.util.Constants.SECTION_WIDTH
-import org.jetbrains.compose.web.css.ms
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.P
@@ -47,8 +29,7 @@ fun contactSection() {
         modifier = Modifier
             .id(Section.Contact.id)
             .maxWidth(SECTION_WIDTH.px)
-            .padding(topBottom = 100.px)
-            .backgroundColor(Theme.LightGrayBg.rgb),
+            .padding(topBottom = 100.px),
         contentAlignment = Alignment.Center
     ) {
         contactContent()
@@ -62,99 +43,77 @@ fun contactContent() {
 
     Column(
         modifier = Modifier
-            .fillMaxWidth(
-                if (breakpoint >= Breakpoint.MD) 100.percent else 90.percent
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+            .fillMaxWidth(if (isWide) 90.percent else 92.percent),
+        horizontalAlignment = Alignment.Start
     ) {
+        // Eyebrow only (headline is inside the wrap)
         sectionTitle(
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(bottom = 25.px)
-                .transition(Transition.of(property = "transform", duration = 500.ms)),
+                .margin(bottom = 32.px),
             section = Section.Contact,
-            alignment = Alignment.CenterHorizontally
+            eyebrow = stringResource("eyebrow_contact"),
+            mainTitle = "",
+            alignment = Alignment.Start
         )
 
-        // New contact icons component
-        ContactIcons()
-
-        /* Contact form - commented out as requested
-        if (isWide) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.px),
-                horizontalArrangement = Arrangement.SpaceBetween,
-            ) {
-                ContactInfoBlock()
-                Box(modifier = Modifier.width(50.percent)) {
-                    contactForm(breakpoint = breakpoint)
+        // Glass wrap container
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .styleModifier {
+                    property("background",
+                        "radial-gradient(80% 100% at 0% 0%, rgba(240,168,104,0.16), transparent 60%), " +
+                        "linear-gradient(180deg, rgba(20,23,28,0.55) 0%, rgba(20,23,28,0.75) 100%)")
+                    property("backdrop-filter", "blur(28px) saturate(170%)")
+                    property("-webkit-backdrop-filter", "blur(28px) saturate(170%)")
+                    property("border", "1px solid rgba(255,255,255,0.10)")
+                    property("border-radius", "22px")
+                    property("padding", "clamp(40px, 6vw, 72px)")
+                    property("box-shadow",
+                        "inset 0 1px 0 rgba(255,255,255,0.16), " +
+                        "inset 0 -1px 0 rgba(0,0,0,0.25), " +
+                        "0 30px 60px -30px rgba(0,0,0,0.70)")
                 }
-            }
-        } else {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 10.px),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                ContactInfoBlock()
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .margin(top = 20.px)
-                ) {
-                    contactForm(breakpoint = breakpoint)
-                }
-            }
-        }
-        */
-    }
-}
-
-@Composable
-private fun ContactInfoBlock() {
-    Column(
-        modifier = Modifier
-            .width( if (rememberBreakpoint() >= Breakpoint.MD) 40.percent else 100.percent)
-            .margin(bottom = 20.px),
-        horizontalAlignment = Alignment.Start
-    ) {
-        P(
-            attrs = Modifier
-                .margin(bottom = 12.px, top = 0.px)
-                .fontFamily(*FONT_FAMILY)
-                .fontSize(28.px)
-                .fontWeight(FontWeight.Bold)
-                .color(Theme.Primary.rgb)
-                .toAttrs()
-        ) { Text("Contact Me") }
-        P(
-            attrs = Modifier
-                .margin(bottom = 16.px, top = 0.px)
-                .fontFamily(*FONT_FAMILY)
-                .fontSize(15.px)
-                .fontWeight(FontWeight.Normal)
-                .color(Theme.Secondary.rgb)
-                .toAttrs()
         ) {
-            Text("Please reach out with your name, email, subject, and message. I'm available for freelance work and collaborations.")
-        }
-        P(
-            attrs = Modifier
-                .margin(bottom = 10.px, top = 0.px)
-                .fontFamily(*FONT_FAMILY)
-                .fontSize(15.px)
-                .fontWeight(FontWeight.Bold)
-                .color(Theme.Primary.rgb)
-                .toAttrs()
-        ) { Text("Phone: $CONTACT_PHONE") }
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.Start
+            ) {
+                // Headline
+                P(
+                    attrs = Modifier
+                        .fillMaxWidth()
+                        .margin(top = 0.px, bottom = 14.px)
+                        .fontFamily(*FONT_FAMILY)
+                        .fontWeight(FontWeight.Bold)
+                        .color(Theme.Primary.rgb)
+                        .styleModifier {
+                            property("font-size", "clamp(32px, 4vw, 48px)")
+                            property("letter-spacing", "-0.02em")
+                            property("line-height", "1.1")
+                        }
+                        .toAttrs()
+                ) { Text(stringResource("contact_title")) }
 
-        Row(horizontalArrangement = Arrangement.spacedBy(16.px)) {
-            SocialIconButton(href = "https://github.com/Garfend") { FaGithub(size = IconSize.LG) }
-            SocialIconButton(href = "https://www.linkedin.com/in/abdelrahman-abdelwahab-abo-ibrahim-91a01a214/") { FaLinkedin(size = IconSize.LG) }
+                // Blurb
+                P(
+                    attrs = Modifier
+                        .margin(top = 0.px, bottom = 40.px)
+                        .fontFamily(*FONT_FAMILY)
+                        .fontSize(17.px)
+                        .fontWeight(FontWeight.Normal)
+                        .color(Theme.Secondary.rgb)
+                        .styleModifier {
+                            property("max-width", "540px")
+                            property("line-height", "1.65")
+                        }
+                        .toAttrs()
+                ) { Text(stringResource("contact_description")) }
+
+                // Contact cards
+                ContactIcons()
+            }
         }
     }
 }

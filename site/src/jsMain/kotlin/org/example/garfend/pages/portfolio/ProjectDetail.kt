@@ -1,19 +1,25 @@
 package org.example.garfend.pages.portfolio
 
 import androidx.compose.runtime.*
+import com.varabyte.kobweb.compose.css.FontWeight
 import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
+import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.core.Page
 import com.varabyte.kobweb.core.rememberPageContext
 import org.example.garfend.components.BackButton
 import org.example.garfend.components.PortfolioDetailContent
 import org.example.garfend.components.PortfolioDetailHeader
 import org.example.garfend.models.Portfolio
+import org.example.garfend.models.Theme
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
+import org.jetbrains.compose.web.dom.P
+import org.jetbrains.compose.web.dom.Text
 
 @Page("/portfolio/{project}")
 @Composable
@@ -21,7 +27,6 @@ fun ProjectDetailPage() {
     val ctx = rememberPageContext()
     val projectId = ctx.route.params["project"] ?: ""
 
-    // Find the portfolio item by matching the urlId
     val portfolioItem = remember(projectId) {
         Portfolio.entries.firstOrNull {
             it.urlId.equals(projectId, ignoreCase = true)
@@ -31,7 +36,6 @@ fun ProjectDetailPage() {
     if (portfolioItem != null) {
         PortfolioDetailPageContent(portfolio = portfolioItem)
     } else {
-        // Show 404 or redirect
         ProjectNotFound()
     }
 }
@@ -42,23 +46,18 @@ private fun PortfolioDetailPageContent(portfolio: Portfolio) {
         modifier = Modifier
             .fillMaxWidth()
             .minHeight(100.percent)
-            .backgroundColor(org.example.garfend.models.Theme.LightGrayBg.rgb),
+            .styleModifier { property("background", "transparent") },
         contentAlignment = Alignment.TopCenter
     ) {
         Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .maxWidth(800.px)
-                .padding(topBottom = 100.px, leftRight = 25.px),
+                .fillMaxWidth(90.percent)
+                .maxWidth(1100.px)
+                .padding(topBottom = 100.px),
             horizontalAlignment = Alignment.Start
         ) {
-            // Back button
             BackButton()
-
-            // Portfolio header (app icon + name + developer)
             PortfolioDetailHeader(portfolio = portfolio)
-
-            // Portfolio content (rating, download, description, info)
             PortfolioDetailContent(portfolio = portfolio)
         }
     }
@@ -70,13 +69,24 @@ private fun ProjectNotFound() {
         modifier = Modifier
             .fillMaxWidth()
             .minHeight(100.percent)
-            .backgroundColor(org.example.garfend.models.Theme.LightGrayBg.rgb),
+            .styleModifier { property("background", "transparent") },
         contentAlignment = Alignment.Center
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.gap(20.px)
         ) {
-            org.jetbrains.compose.web.dom.Text("Project not found")
+            P(
+                attrs = Modifier
+                    .margin(topBottom = 0.px)
+                    .fontFamily("Inter", "sans-serif")
+                    .fontSize(28.px)
+                    .fontWeight(FontWeight.Bold)
+                    .color(Theme.Primary.rgb)
+                    .toAttrs()
+            ) {
+                Text("Project not found")
+            }
             BackButton()
         }
     }

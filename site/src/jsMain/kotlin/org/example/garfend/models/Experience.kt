@@ -1,88 +1,82 @@
 package org.example.garfend.models
 
-import org.example.garfend.util.Constants.listOfJobs
 
-
+/**
+ * Career history.
+ *
+ * [isTraining] separates short bootcamp / certification programs from real
+ * professional roles so the UI can present them differently — actual roles
+ * as the main timeline, training as a small de-emphasized strip.
+ */
 enum class Experience(
     val number: String,
-    val jobPosition: String,
-    val description: String,
-    val company: String,
-    val from: String,
-    val to: String,
     val active: Boolean = false,
+    val isTraining: Boolean = false,
     val jobPositionKey: String,
     val descriptionKey: String,
     val companyKey: String,
     val fromKey: String,
     val toKey: String
 ) {
-    First(
+    // ---- Actual professional experience (most recent first) ----
+    Cob(
         number = "01",
-        jobPosition = "Mobile App Developer",
-        description = listOfJobs.first(),
-        company = "freelancing",
-        from = "November 2024",
-        to = "NOW",
         active = true,
-        jobPositionKey = "exp_mobile_app_developer",
-        descriptionKey = "exp_desc_1",
-        companyKey = "exp_company_freelancing",
-        fromKey = "exp_date_november_2024",
-        toKey = "exp_date_now"
+        jobPositionKey = "exp_mobile_engineer",
+        descriptionKey = "exp_desc_cob",
+        companyKey = "exp_company_cob",
+        fromKey = "exp_date_mar_2026",
+        toKey = "exp_date_present"
     ),
-    Second(
+    Freelancing(
         number = "02",
-        jobPosition = "Flutter Developer",
-        description = listOfJobs[1],
-        company = "Ebda3 Tech",
-        from = "May 2025",
-        to = "NOW",
         active = true,
-        jobPositionKey = "exp_flutter_developer",
-        descriptionKey = "exp_desc_2",
+        jobPositionKey = "exp_mobile_engineer",
+        descriptionKey = "exp_desc_freelance",
+        companyKey = "exp_company_freelancing",
+        fromKey = "exp_date_apr_2024",
+        toKey = "exp_date_present"
+    ),
+    Ebda3(
+        number = "03",
+        jobPositionKey = "exp_mobile_developer",
+        descriptionKey = "exp_desc_ebda3",
         companyKey = "exp_company_ebda3",
         fromKey = "exp_date_may_2025",
-        toKey = "exp_date_now"
+        toKey = "exp_date_2026"
     ),
-    Third(
-        number = "03",
-        jobPosition = "Android App Development Trainee",
-        description = listOfJobs[2],
-        company = "The chance bootcamp",
-        from = " July 2023",
-        to = "February 2023",
-        jobPositionKey = "exp_android_trainee",
-        descriptionKey = "exp_desc_3",
-        companyKey = "exp_company_chance",
-        fromKey = "exp_date_july_2023",
-        toKey = "exp_date_february_2023"
-    ),
-    Fourth(
-        number = "04",
-        jobPosition = "Front-end and cross-platform development trainee",
-        description = listOfJobs[3],
-        company = "ITI",
-        from = " Feb 2025",
-        to = "Aug 2025",
-        jobPositionKey = "exp_frontend_trainee",
-        descriptionKey = "exp_desc_4",
+
+    // ---- Training programs / certifications (de-emphasized) ----
+    Iti(
+        number = "T1",
+        isTraining = true,
+        jobPositionKey = "exp_iti_track",
+        descriptionKey = "exp_desc_iti",
         companyKey = "exp_company_iti",
         fromKey = "exp_date_feb_2025",
         toKey = "exp_date_aug_2025"
     ),
-    Fifth(
-        number = "05",
-        jobPosition = "Android and Cross-platform development trainee",
-        description = listOfJobs[4],
-        company = "DEPI",
-        from = "Apr 2024",
-        to = "Oct 2024",
-        jobPositionKey = "exp_android_cross_trainee",
-        descriptionKey = "exp_desc_5",
+    Depi(
+        number = "T2",
+        isTraining = true,
+        jobPositionKey = "exp_depi_track",
+        descriptionKey = "exp_desc_depi",
         companyKey = "exp_company_depi",
         fromKey = "exp_date_apr_2024",
         toKey = "exp_date_oct_2024"
+    ),
+    Chance(
+        number = "T3",
+        isTraining = true,
+        jobPositionKey = "exp_chance_track",
+        descriptionKey = "exp_desc_chance",
+        companyKey = "exp_company_chance",
+        fromKey = "exp_date_feb_2023",
+        toKey = "exp_date_jul_2023"
     );
 
+    companion object {
+        val professional get() = entries.filter { !it.isTraining }
+        val training get() = entries.filter { it.isTraining }
+    }
 }

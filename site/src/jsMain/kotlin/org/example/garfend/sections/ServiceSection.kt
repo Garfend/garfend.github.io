@@ -7,15 +7,16 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
 import com.varabyte.kobweb.compose.ui.modifiers.*
+import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.silk.components.layout.SimpleGrid
 import com.varabyte.kobweb.silk.components.layout.numColumns
 import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.example.garfend.components.sectionTitle
 import org.example.garfend.components.serviceCard
+import org.example.garfend.components.stringResource
 import org.example.garfend.models.Section
 import org.example.garfend.models.Service
-import org.example.garfend.models.Theme
 import org.example.garfend.util.Constants.SECTION_WIDTH
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -26,8 +27,7 @@ fun serviceSection() {
         modifier = Modifier
             .id(Section.Service.id)
             .maxWidth(SECTION_WIDTH.px)
-            .padding(topBottom = 100.px)
-            .backgroundColor(Theme.LightGrayBg.rgb),
+            .padding(topBottom = 100.px),
         contentAlignment = Alignment.Center
     ) {
         serviceContent()
@@ -39,20 +39,24 @@ fun serviceContent() {
     val breakpoint = rememberBreakpoint()
     Column(
         modifier = Modifier
-            .fillMaxWidth(
-                if (breakpoint >= Breakpoint.MD) 100.percent
-                else 90.percent
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxWidth(if (breakpoint >= Breakpoint.MD) 90.percent else 92.percent),
+        horizontalAlignment = Alignment.Start
     ) {
         sectionTitle(
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(bottom = 20.px),
+                .margin(bottom = 40.px),
             section = Section.Service,
+            eyebrow = stringResource("eyebrow_service"),
+            mainTitle = stringResource("main_title_service"),
             alignment = Alignment.Start
         )
-        SimpleGrid(numColumns = numColumns(base = 1, sm = 2, md = 3)) {
+        SimpleGrid(
+            modifier = Modifier
+                .fillMaxWidth()
+                .styleModifier { property("gap", "20px") },
+            numColumns = numColumns(base = 1, sm = 2, md = 3)
+        ) {
             Service.entries.forEach { service ->
                 serviceCard(service = service)
             }

@@ -9,7 +9,6 @@ import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.graphics.Colors
 import com.varabyte.kobweb.compose.ui.modifiers.color
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
@@ -25,6 +24,7 @@ import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.compose.ui.modifiers.position
 import com.varabyte.kobweb.compose.ui.modifiers.textAlign
 import com.varabyte.kobweb.compose.ui.modifiers.width
+import com.varabyte.kobweb.compose.ui.styleModifier
 import com.varabyte.kobweb.compose.ui.toAttrs
 import com.varabyte.kobweb.silk.components.icons.fa.FaGithub
 import com.varabyte.kobweb.silk.components.icons.fa.FaLinkedin
@@ -37,12 +37,12 @@ import org.example.garfend.components.SocialIconButton
 import org.example.garfend.components.header
 import org.example.garfend.components.stringResource
 import org.example.garfend.models.Section
+import org.example.garfend.models.Theme
 import org.example.garfend.util.Constants.FONT_FAMILY
 import org.example.garfend.util.Constants.SECTION_WIDTH
 import org.jetbrains.compose.web.css.Position
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
-import org.jetbrains.compose.web.css.rgb
 import org.jetbrains.compose.web.css.vh
 import org.jetbrains.compose.web.dom.P
 import org.jetbrains.compose.web.dom.Text
@@ -111,50 +111,75 @@ fun mainText(breakpoint: Breakpoint) {
 @Composable
 private fun HeroTextBlock(breakpoint: Breakpoint, alignStart: Boolean) {
     val language = LocalLanguage.current
-    val introSize = if (breakpoint >= Breakpoint.LG) 24.px else 18.px
-    val nameSize = if (breakpoint >= Breakpoint.LG) 56.px else 36.px
-    val roleSize = if (breakpoint >= Breakpoint.LG) 20.px else 16.px
     val textAlign = if (alignStart) TextAlign.Left else TextAlign.Center
     val alignment = if (alignStart) Alignment.Start else Alignment.CenterHorizontally
 
     Column(
         modifier = Modifier
             .width(90.percent)
-            .maxWidth(1100.px),
+            .maxWidth(900.px),
         horizontalAlignment = alignment
     ) {
+        // Greeting — mono, amber: "// Hello, I'm"
         P(
             attrs = Modifier
-                .margin(bottom = 5.px, top = 0.px)
-                .fontFamily(*FONT_FAMILY)
-                .fontSize(introSize)
+                .margin(bottom = 18.px, top = 0.px)
+                .fontFamily("JetBrains Mono", "monospace")
+                .fontSize(15.px)
                 .fontWeight(FontWeight.Normal)
-                .color(Colors.White)
+                .styleModifier {
+                    property("color", "rgb(240,168,104)")
+                    property("letter-spacing", "0.04em")
+                }
                 .textAlign(textAlign)
                 .toAttrs()
         ) {
-            Text(stringResource("hello_im"))
+            Text("// ${stringResource("hello_im")}")
         }
+
+        // First name line (white)
         P(
             attrs = Modifier
-                .margin(top = 8.px, bottom = 10.px)
+                .margin(top = 0.px, bottom = 0.px)
                 .fontFamily(*FONT_FAMILY)
-                .fontSize(nameSize)
-                .fontWeight(FontWeight.Bold)
-                .color(Colors.White)
-                .textAlign(if(language.isRTL) TextAlign.Right else textAlign)
+                .fontWeight(800)
+                .color(Theme.Primary.rgb)
+                .textAlign(if (language.isRTL) TextAlign.Right else textAlign)
+                .styleModifier {
+                    property("font-size", "clamp(48px, 8vw, 88px)")
+                    property("letter-spacing", "-0.035em")
+                    property("line-height", "1.0")
+                }
                 .toAttrs()
-        ) {
-            Text(stringResource("name"))
-        }
+        ) { Text(stringResource("hero_first_name")) }
+
+        // Last name line (amber accent)
         P(
             attrs = Modifier
-                .margin(top = 0.px, bottom = 30.px)
+                .margin(top = 0.px, bottom = 18.px)
                 .fontFamily(*FONT_FAMILY)
-                .fontSize(roleSize)
+                .fontWeight(800)
+                .styleModifier {
+                    property("font-size", "clamp(48px, 8vw, 88px)")
+                    property("letter-spacing", "-0.035em")
+                    property("line-height", "1.0")
+                    property("color", "rgb(240,168,104)")
+                }
+                .textAlign(if (language.isRTL) TextAlign.Right else textAlign)
+                .toAttrs()
+        ) { Text(stringResource("hero_last_name")) }
+
+        // Role
+        P(
+            attrs = Modifier
+                .margin(top = 0.px, bottom = 36.px)
+                .fontFamily(*FONT_FAMILY)
                 .fontWeight(FontWeight.Normal)
-                .color(rgb(204, 204, 204))
+                .color(Theme.Secondary.rgb)
                 .textAlign(textAlign)
+                .styleModifier {
+                    property("font-size", "clamp(20px, 2.4vw, 26px)")
+                }
                 .toAttrs()
         ) {
             Text(stringResource("job_title"))

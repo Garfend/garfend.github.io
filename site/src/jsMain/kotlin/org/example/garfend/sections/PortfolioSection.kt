@@ -6,7 +6,6 @@ import com.varabyte.kobweb.compose.foundation.layout.Box
 import com.varabyte.kobweb.compose.foundation.layout.Column
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
-import com.varabyte.kobweb.compose.ui.modifiers.backgroundColor
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
 import com.varabyte.kobweb.compose.ui.modifiers.id
 import com.varabyte.kobweb.compose.ui.modifiers.margin
@@ -19,9 +18,9 @@ import com.varabyte.kobweb.silk.style.breakpoint.Breakpoint
 import com.varabyte.kobweb.silk.theme.breakpoint.rememberBreakpoint
 import org.example.garfend.components.portfolioCard
 import org.example.garfend.components.sectionTitle
+import org.example.garfend.components.stringResource
 import org.example.garfend.models.Portfolio
 import org.example.garfend.models.Section
-import org.example.garfend.models.Theme
 import org.example.garfend.util.Constants.SECTION_WIDTH
 import org.jetbrains.compose.web.css.percent
 import org.jetbrains.compose.web.css.px
@@ -32,8 +31,7 @@ fun portfolioSection() {
         modifier = Modifier
             .id(Section.Portfolio.id)
             .maxWidth(SECTION_WIDTH.px)
-            .padding(topBottom = 100.px)
-            .backgroundColor(Theme.LightGrayBg.rgb),
+            .padding(topBottom = 100.px),
         contentAlignment = Alignment.Center
     ) {
         portfolioContent()
@@ -45,17 +43,17 @@ fun portfolioContent() {
     val breakpoint = rememberBreakpoint()
     Column(
         modifier = Modifier
-            .fillMaxWidth(
-                if (breakpoint >= Breakpoint.MD) 100.percent
-                else 90.percent
-            ),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxWidth(if (breakpoint >= Breakpoint.MD) 90.percent else 92.percent),
+        horizontalAlignment = Alignment.Start
     ) {
         sectionTitle(
             modifier = Modifier
                 .fillMaxWidth()
-                .margin(bottom = 25.px),
-            section = Section.Portfolio
+                .margin(bottom = 40.px),
+            section = Section.Portfolio,
+            eyebrow = stringResource("eyebrow_portfolio"),
+            mainTitle = stringResource("main_title_portfolio"),
+            alignment = Alignment.Start
         )
         portfolioCards()
     }
@@ -68,10 +66,7 @@ fun portfolioCards() {
         modifier = Modifier
             .fillMaxWidth()
             .margin(bottom = 25.px)
-            .styleModifier {
-                property("gap", "25px")
-                property("justify-items", "center")
-            },
+            .styleModifier { property("gap", "30px")},
         numColumns = numColumns(base = 1, sm = 2, md = 3)
     ) {
         Portfolio.entries.forEachIndexed { index, portfolio ->

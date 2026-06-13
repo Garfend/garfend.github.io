@@ -3,7 +3,7 @@ package org.example.garfend.util
 object Constants {
 
     const val SECTION_WIDTH = 1920
-    val FONT_FAMILY = arrayOf("Space Grotesk", "Cairo", "sans-serif")
+    val FONT_FAMILY = arrayOf("Inter", "sans-serif")
 
     val listOfJobs = listOf(
         "Developing innovative user-centered mobile applications. \n" +
@@ -33,6 +33,10 @@ object Constants {
     const val CONTACT_PHONE = "+201009483273"
     const val CONTACT_EMAIL = "abdelrahmanabdelwahab1090@gmail.com"
     const val devName = "Abdelrahman Abdelwahab"
+    const val projectsCompleted = "10"
+    const val YOE = "3"
+    const val trainingPrograms = "5"
+    const val happyClients = "7"
 }
 
 object Res {
@@ -61,11 +65,6 @@ object Res {
         const val serineKamal = "/serinekamal.jpeg"
         const val mabooks = "/mabooks_logo.png"
         const val orderkshop = "/orderkshop_logo.png"
-        const val ramadanBanner = "/ramadan/ramadan_banner.png"
-        const val ramadanBanner2 = "/ramadan/ramadan_banner2.png"
-        const val ramadanLantern = "/ramadan/ramadan_lantern.png"
-        const val ramadanMosque = "/ramadan/ramadan_mosuqe.png"
-        const val ramadanMoon = "/ramadan/ramadan_moon.png"
 
     }
 }
