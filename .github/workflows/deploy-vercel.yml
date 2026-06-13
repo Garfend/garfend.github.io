@@ -12,8 +12,6 @@ jobs:
 
     env:
       KOBWEB_CLI_VERSION: 0.9.16
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
     steps:
       - name: Checkout
@@ -67,6 +65,11 @@ jobs:
         working-directory: site/.kobweb/site
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_ORG_ID_RAW: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID_RAW: ${{ secrets.VERCEL_PROJECT_ID }}
         run: |
+          # Strip any stray whitespace/newlines from the secret values
+          export VERCEL_ORG_ID="$(echo "$VERCEL_ORG_ID_RAW" | tr -d '[:space:]')"
+          export VERCEL_PROJECT_ID="$(echo "$VERCEL_PROJECT_ID_RAW" | tr -d '[:space:]')"
           npm i -g vercel@latest
           vercel deploy --prod --yes --token "$VERCEL_TOKEN"
