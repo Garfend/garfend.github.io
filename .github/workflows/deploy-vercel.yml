@@ -64,10 +64,9 @@ jobs:
           find site/.kobweb/site/ -type f | head -20
 
       - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          working-directory: site/.kobweb/site
-          vercel-args: '--prod'
+        working-directory: site/.kobweb/site
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        run: |
+          npm i -g vercel@latest
+          vercel deploy --prod --yes --token "$VERCEL_TOKEN"
