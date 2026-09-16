@@ -85,7 +85,12 @@ enum class Portfolio(
     val developer: String = Constants.devName,
     val version: String = "1.0.0",
     val rating: String = "4.5",
-    val urlId: String = ""
+    val urlId: String = "",
+    /**
+     * Overrides the platform shown on the detail page. It is normally inferred from which links
+     * exist, which cannot describe an app that ships to both stores privately (no public links).
+     */
+    val platformKey: String? = null
 ) {
 
     MABooks(
@@ -133,6 +138,37 @@ enum class Portfolio(
         urlId = "kn-libya"
     ),
 
+    NourishDurham(
+        image = Res.Image.nourishdurham,
+        title = "NOURISH Durham",
+        description = PortfolioCategory.CrossPlatformCmp,
+        links = PortfolioLinks(
+            playStore = "https://play.google.com/store/apps/details?id=com.nourishdurham.app",
+            appStore = "https://apps.apple.com/eg/app/nourish-durham/id6801828352",
+            website = "https://nourishdurham.com"
+        ),
+        titleKey = "portfolio_nourish_durham",
+        appDescription = "NOURISH Durham is a community nutrition platform built as a single Kotlin Multiplatform codebase spanning Android, iOS, and the web. Residents find free produce distributions on a calendar, list, or map, log their daily fruit and vegetable servings, browse recipes matched to the next drop-off, RSVP to community events, and take program surveys. Program staff manage the whole operation from a companion Compose Multiplatform web dashboard with role-based Super Admin controls, covering distributions, events, nutrition content, recipes, notifications, surveys, support, and audit logging.",
+        version = "1.0.0",
+        rating = "N/A",
+        urlId = "nourish-durham"
+    ),
+
+    TopMedia(
+        image = Res.Image.topmedia,
+        title = "TopMedia",
+        description = PortfolioCategory.MobileFlutter,
+        links = PortfolioLinks(
+            playStore = "https://play.google.com/store/apps/details?id=com.topmedia.app",
+            appStore = "https://apps.apple.com/us/app/top-media-app/id6737759369"
+        ),
+        titleKey = "portfolio_topmedia",
+        appDescription = "TopMedia is a social platform for sharing posts, photos, and video reels with friends, family, and communities. Follow the people you care about, reply to individual comments in threaded conversations, translate posts into your own language, and watch reels in a smooth full-screen player built for fast scrolling.",
+        version = "2.0.1",
+        rating = "N/A",
+        urlId = "topmedia"
+    ),
+
     DabdoubButchery(
         image = Res.Image.dabdoub,
         title = "Dabdoub Butchery",
@@ -174,6 +210,36 @@ enum class Portfolio(
         version = "2.0.5",
         rating = "4.6",
         urlId = "orderk"
+    ),
+
+    OrderkShop(
+        image = Res.Image.orderkshopIcon,
+        title = "OrderkShop",
+        description = PortfolioCategory.MobileFlutter,
+        links = PortfolioLinks(
+            playStore = "https://play.google.com/store/apps/details?id=com.orderk.orderkshop",
+            appStore = "https://apps.apple.com/eg/app/orderkshop/id6758918373"
+        ),
+        titleKey = "portfolio_orderkshop",
+        appDescription = "OrderkShop is the B2C side of the Orderk platform, bringing supermarket goods and fresh produce to your door. Browse thousands of products, take advantage of daily offers, track your order live on the map, pay with a digital wallet or local methods, and collect rewards as you shop.",
+        version = "1.0.1",
+        rating = "N/A",
+        urlId = "orderkshop"
+    ),
+
+    // Internal fleet app for Orderk's own drivers — not publicly listed, so it carries no store
+    // links and no product detail beyond authorship. Deliberate: see the site owner's note.
+    OrderkShopDelivery(
+        image = Res.Image.orderkshopIcon,
+        title = "OrderkShop Delivery",
+        description = PortfolioCategory.MobileFlutter,
+        links = PortfolioLinks(),
+        titleKey = "portfolio_orderkshop_delivery",
+        appDescription = "Internal driver app for the OrderkShop delivery fleet, built and maintained by me. It is a private company application and is not publicly distributed, so no further details are listed here.",
+        version = "—",
+        rating = "N/A",
+        urlId = "orderkshop-delivery",
+        platformKey = "platform_ios_android"
     ),
 
     MuseMagic(
@@ -224,6 +290,10 @@ enum class PortfolioCategory(
 ) {
     MobileKotlin("Android App - jetpack compose", "portfolio_cat_mobile_kotlin"),
     MobileCmp("Mobile App - Compose Multiplatform", "portfolio_cat_mobile_cmp"),
+    CrossPlatformCmp(
+        "Compose Multiplatform - Mobile/Web",
+        "portfolio_cat_cross_platform_cmp"
+    ),
     MobileFlutter("Mobile App - flutter", "portfolio_cat_mobile_flutter"),
     UiUx("UI/UX Design", "portfolio_cat_ui_ux")
 }

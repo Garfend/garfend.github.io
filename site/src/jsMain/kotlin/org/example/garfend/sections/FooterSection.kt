@@ -115,7 +115,7 @@ private fun footerContent() {
 
 @Composable
 private fun footerNavLinks(row: Boolean) {
-    Section.entries.toTypedArray().take(6).forEach { section ->
+    Section.navEntries.forEach { section ->
         Link(
             modifier = FooterLinkStyle.toModifier()
                 .fontFamily(*FONT_FAMILY)

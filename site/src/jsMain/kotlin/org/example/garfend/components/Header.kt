@@ -137,7 +137,7 @@ fun rightSide() {
 
     // Setup scroll detection to determine which section is currently visible
     LaunchedEffect(Unit) {
-        val sections = Section.entries.toTypedArray().take(6)
+        val sections = Section.navEntries
 
         // Scroll listener to detect which section is in view
         val scrollListener: (dynamic) -> Unit = { _ ->
@@ -174,7 +174,7 @@ fun rightSide() {
         Row(
             horizontalArrangement = Arrangement.Start,
         ) {
-            Section.entries.toTypedArray().take(6).forEach { section ->
+            Section.navEntries.forEach { section ->
                 val linkModifier = NavigationItemStyle.toModifier()
                     .then(LinkOverrideStyle.toModifier())
                     .padding(right = 25.px)

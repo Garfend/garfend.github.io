@@ -65,6 +65,11 @@ object Res {
         const val serineKamal = "/serinekamal.jpeg"
         const val mabooks = "/mabooks_logo.png"
         const val orderkshop = "/orderkshop_logo.png"
+        const val nourishdurham = "/nourishdurham.png"
+        const val topmedia = "/topmedia.png"
+        // Current OrderkShop brand mark (cart + pin), shared by the storefront and the driver app —
+        // the driver app has no artwork of its own, it still ships the GroFresh template icon.
+        const val orderkshopIcon = "/orderkshop_icon.png"
 
     }
 }

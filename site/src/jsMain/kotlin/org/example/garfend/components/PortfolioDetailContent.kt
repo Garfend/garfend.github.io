@@ -241,6 +241,21 @@ private fun DownloadSection(
             }
         }
 
+        // An entry with no links and no rating (a private internal app) would leave this section
+        // as a bare heading, so it says why there is nothing to download instead.
+        if (!portfolio.links.hasLinks() && !shouldFetchFromAppStore && portfolio.rating == "N/A") {
+            P(
+                attrs = Modifier
+                    .margin(topBottom = 0.px)
+                    .fontFamily("Inter", "sans-serif")
+                    .fontSize(15.px)
+                    .color(Theme.Gray.rgb)
+                    .toAttrs()
+            ) {
+                Text(stringResource("not_publicly_distributed"))
+            }
+        }
+
         // Download buttons — first is primary (amber), rest are glass
         if (portfolio.links.hasLinks()) {
             val allLinks = portfolio.links.getAllLinks()
@@ -456,6 +471,7 @@ private fun AppInfoSection(
         InfoRow(label = stringResource("label_category"), value = stringResource(portfolio.description.titleKey))
 
         val platform = when {
+            portfolio.platformKey != null -> stringResource(portfolio.platformKey)
             portfolio.links.isCrossPlatform() -> stringResource("platform_ios_android")
             portfolio.links.playStore != null -> stringResource("platform_android")
             portfolio.links.appStore != null -> stringResource("platform_ios")

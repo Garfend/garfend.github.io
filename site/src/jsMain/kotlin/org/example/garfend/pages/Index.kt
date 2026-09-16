@@ -46,6 +46,7 @@ fun homePage() {
                 serviceSection()
                 portfolioSection()
                 experienceSection()
+                certificatesSection()
                 contactSection()
                 footerSection()
             }

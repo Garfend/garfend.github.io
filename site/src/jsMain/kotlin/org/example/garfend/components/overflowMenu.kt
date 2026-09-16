@@ -201,7 +201,7 @@ fun overflowMenu(onMenuClosed: () -> Unit) {
                     showBackground = false
                 )
             }
-            Section.entries.toTypedArray().take(6).forEach { section ->
+            Section.navEntries.forEach { section ->
                 Link(
                     modifier = NavigationItemStyle.toModifier()
                         .then(LinkOverrideStyle.toModifier())

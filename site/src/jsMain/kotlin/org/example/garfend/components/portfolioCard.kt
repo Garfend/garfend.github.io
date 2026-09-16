@@ -76,7 +76,12 @@ private fun crossPlatformCard(
         Column(
             modifier = Modifier
                 .id("columnParent")
-                .width(Width.MaxContent)
+                // A definite 300px (the cover image's width), shrinking only when the grid cell
+                // is narrower. It must NOT be max-content: under content sizing the text below
+                // sets the width, so a wider font — or the fallback one, before the webfont
+                // loads — pushes the meta line past the cap and the right padding disappears.
+                .width(300.px)
+                .maxWidth(100.percent)
         ) {
             // ── Cover image with iOS/Android hover overlay ──
             Box(
@@ -93,6 +98,8 @@ private fun crossPlatformCard(
                     src = portfolio.image,
                     alt = stringResource("portfolio_image_alt")
                 )
+
+                statusPill(portfolio.status)
 
                 // Animated overlay (iOS / Android split panel)
                 Box(
@@ -245,7 +252,9 @@ private fun singleLinkCard(
         Column(
             modifier = Modifier
                 .id("columnParent")
-                .width(Width.MaxContent)
+                // Same sizing rule as the cross-platform card — see the note there.
+                .width(300.px)
+                .maxWidth(100.percent)
         ) {
             // ── Cover image with amber overlay on hover ──
             Box(
@@ -262,6 +271,9 @@ private fun singleLinkCard(
                     src = portfolio.image,
                     alt = stringResource("portfolio_image_alt")
                 )
+
+                statusPill(portfolio.status)
+
                 Box(
                     modifier = Modifier
                         .id("greenOverlay")
@@ -294,7 +306,12 @@ private fun cardBody(portfolio: Portfolio) {
         modifier = Modifier
             .fillMaxWidth()
             .padding(all = 22.px)
-            .styleModifier { property("gap", "12px"); property("flex", "1") }
+            .styleModifier {
+                property("gap", "12px")
+                property("flex", "1")
+                // Without this a long child can refuse to shrink below its own content width.
+                property("min-width", "0")
+            }
     ) {
         // Store chips
         val links = portfolio.links.getAllLinks()
@@ -325,14 +342,24 @@ private fun cardBody(portfolio: Portfolio) {
                     .fontSize(20.px)
                     .fontWeight(FontWeight.Bold)
                     .color(Theme.Primary.rgb)
-                    .styleModifier { property("letter-spacing", "-0.01em") }
+                    .styleModifier {
+                        property("letter-spacing", "-0.01em")
+                        property("min-width", "0")
+                        // One line, always: a wrapped title would make this card taller than the
+                        // rest of its row. The status moved onto the cover art for the same
+                        // reason, which is what keeps every real title short enough to fit.
+                        property("white-space", "nowrap")
+                        property("overflow", "hidden")
+                        property("text-overflow", "ellipsis")
+                    }
                     .toAttrs()
             ) {
-                Text(formattedTitle(portfolio))
+                Text(stringResource(portfolio.titleKey))
             }
         }
 
         // Meta: category
+        val categoryLabel = stringResource(portfolio.description.titleKey)
         P(
             attrs = Modifier
                 .id("portfolioDesc")
@@ -342,9 +369,18 @@ private fun cardBody(portfolio: Portfolio) {
                 .fontSize(12.px)
                 .fontWeight(FontWeight.Normal)
                 .color(Theme.Gray.rgb)
-                .toAttrs()
+                .styleModifier {
+                    // Ellipsis rather than wrap: the fix for an over-long category must not make
+                    // this card taller than its neighbours.
+                    property("min-width", "0")
+                    property("white-space", "nowrap")
+                    property("overflow", "hidden")
+                    property("text-overflow", "ellipsis")
+                }
+                // Truncated labels stay readable on hover.
+                .toAttrs { attr("title", categoryLabel) }
         ) {
-            Text(stringResource(portfolio.description.titleKey))
+            Text(categoryLabel)
         }
 
         // View case study CTA
@@ -404,13 +440,49 @@ private fun chipLabel(type: LinkType): String = when (type) {
     LinkType.OTHER      -> stringResource("chip_link_other")
 }
 
+/**
+ * Development status, drawn over the top-right of the cover art.
+ *
+ * It used to be appended to the title ("NOURISH Durham (In testing)"), which wrapped to a second
+ * line and made that one card taller than every other card in its row. Here it costs no layout
+ * height at all, and the title stays whole.
+ */
 @Composable
-private fun devStatusSuffix(status: DevelopmentStatus): String = when (status) {
-    DevelopmentStatus.IN_DEVELOPMENT -> stringResource("dev_status_in_dev_suffix")
-    DevelopmentStatus.IN_TESTING     -> stringResource("dev_status_in_testing_suffix")
-    DevelopmentStatus.PRODUCTION     -> ""
-}
+private fun BoxScope.statusPill(status: DevelopmentStatus) {
+    val label = when (status) {
+        DevelopmentStatus.IN_DEVELOPMENT -> stringResource("status_in_development")
+        DevelopmentStatus.IN_TESTING     -> stringResource("status_in_testing")
+        DevelopmentStatus.PRODUCTION     -> return
+    }
 
-@Composable
-private fun formattedTitle(portfolio: Portfolio): String =
-    stringResource(portfolio.titleKey) + devStatusSuffix(portfolio.status)
+    Box(
+        modifier = Modifier
+            .align(Alignment.TopEnd)
+            .margin(12.px)
+            .styleModifier {
+                property("padding", "5px 11px")
+                property("border-radius", "999px")
+                property("background", "rgba(20,23,28,0.82)")
+                property("border", "1px solid rgba(240,168,104,0.45)")
+                property("backdrop-filter", "blur(10px)")
+                property("-webkit-backdrop-filter", "blur(10px)")
+                // The cross-platform card puts its iOS/Android links under this corner.
+                property("pointer-events", "none")
+            }
+    ) {
+        P(
+            attrs = Modifier
+                .margin(topBottom = 0.px)
+                .fontFamily("JetBrains Mono", "monospace")
+                .fontSize(11.px)
+                .color(org.example.garfend.models.Theme.LightRed.rgb)
+                .styleModifier {
+                    property("letter-spacing", "0.06em")
+                    property("white-space", "nowrap")
+                }
+                .toAttrs()
+        ) {
+            Text(label)
+        }
+    }
+}

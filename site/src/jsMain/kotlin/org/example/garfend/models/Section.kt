@@ -48,6 +48,14 @@ enum class Section(
         titleKey = "section_experience",
         subtitleKey = "subtitle_experience"
     ),
+    Certificates(
+        id = "certificates",
+        title = "Certificates",
+        subtitle = "Training & Compliance",
+        path = "#certificates",
+        titleKey = "section_certificates",
+        subtitleKey = "subtitle_certificates"
+    ),
     Contact(
         id = "contact",
         title = "Contact me",
@@ -71,5 +79,14 @@ enum class Section(
         path = "#achievements",
         titleKey = "section_achievements",
         subtitleKey = "subtitle_achievements"
-    )
+    );
+
+    companion object {
+        /**
+         * The sections the home page actually renders, in page order — what navigation links to
+         * and what scroll-spy watches. Testimonial and Achievements are declared but not built,
+         * so linking to them would scroll nowhere.
+         */
+        val navEntries: List<Section> = entries - setOf(Testimonial, Achievements)
+    }
 }

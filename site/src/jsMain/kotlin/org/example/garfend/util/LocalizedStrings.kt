@@ -23,6 +23,7 @@ object Strings {
             "section_service" to "Service",
             "section_portfolio" to "Portfolio",
             "section_experience" to "Experience",
+            "section_certificates" to "Certificates",
             "section_contact" to "Contact me",
             "section_testimonial" to "Testimonial",
             "section_achievements" to "Achievements",
@@ -32,6 +33,7 @@ object Strings {
             "subtitle_service" to "I'm Good at",
             "subtitle_portfolio" to "My Work",
             "subtitle_experience" to "Work Experience",
+            "subtitle_certificates" to "Training & Compliance",
             "subtitle_contact" to "Get in Touch",
             "subtitle_testimonial" to "Happy Customers",
             "subtitle_achievements" to "Personal Achievements",
@@ -41,13 +43,15 @@ object Strings {
             "eyebrow_service" to "02 — Service",
             "eyebrow_portfolio" to "03 — Portfolio",
             "eyebrow_experience" to "04 — Experience",
-            "eyebrow_contact" to "05 — Contact me",
+            "eyebrow_certificates" to "05 — Certificates",
+            "eyebrow_contact" to "06 — Contact me",
 
             // Section Main Titles
             "main_title_about" to "Engineering precision.\nCreative design.",
             "main_title_service" to "What I do.",
             "main_title_portfolio" to "Selected work.",
             "main_title_experience" to "Track record.",
+            "main_title_certificates" to "Verified training.",
 
             // About Stats
             "stat_label_apps_shipped" to "Production apps shipped",
@@ -80,9 +84,14 @@ object Strings {
             "portfolio_titanium_gym" to "Titanuim gym",
             "portfolio_orderk" to "Orderk",
             "portfolio_serinekamal" to "Serine Kamal",
+            "portfolio_nourish_durham" to "NOURISH Durham",
+            "portfolio_topmedia" to "TopMedia",
+            "portfolio_orderkshop" to "OrderkShop",
+            "portfolio_orderkshop_delivery" to "OrderkShop Delivery",
             // Portfolio Categories
             "portfolio_cat_mobile_kotlin" to "Android App - jetpack compose",
             "portfolio_cat_mobile_cmp" to "Mobile App - Compose Multiplatform",
+            "portfolio_cat_cross_platform_cmp" to "Compose Multiplatform - Mobile/Web",
             "portfolio_cat_mobile_flutter" to "Mobile App - flutter",
             "portfolio_cat_ui_ux" to "UI/UX Design",
 
@@ -111,10 +120,28 @@ object Strings {
             "chip_link_other" to "View",
 
             // Portfolio Card - Dev status title suffix
-            "dev_status_in_dev_suffix" to " (In dev)",
-            "dev_status_in_testing_suffix" to " (In testing)",
+            // Non-breaking space inside the suffix so a long title wraps before it, never
+            // mid-parenthesis ("NOURISH Durham (In" / "testing)").
+            "dev_status_in_dev_suffix" to " (In dev)",
+            "dev_status_in_testing_suffix" to " (In testing)",
+
+            // Certificates
+            "certificate_issuer_hcp" to "Healthcare Compliance Pros",
+            "certificate_date_may_2026" to "May 2026",
+            "certificate_id_label" to "Certificate no.",
+            "certificate_view_link" to "View certificate →",
+            "certificate_badge_alt" to "Certificate badge",
+            "certificate_hipaa_privacy" to "HIPAA Privacy",
+            "certificate_hipaa_privacy_desc" to "Uses and disclosures of PHI, patient rights, minimum necessary, breach notification, and safeguards for handling protected health information.",
+            "certificate_hipaa_security" to "HIPAA Security",
+            "certificate_hipaa_security_desc" to "Administrative, physical, and technical safeguards for ePHI — access control, encryption at rest and in transit, audit controls, and incident response.",
+            "certificate_code_of_conduct" to "Code of Conduct & Compliance",
+            "certificate_code_of_conduct_desc" to "Corporate compliance program, confidentiality, conflicts of interest, records retention, and identifying and reporting fraud, waste, and abuse.",
+            "certificate_osha_safety" to "OSHA Safety & Bloodborne Pathogens",
+            "certificate_osha_safety_desc" to "Bloodborne pathogens, hazard communication under GHS, general safety and PPE, fire and life safety, and biomedical waste regulations.",
 
             // Portfolio Detail - Section headings
+            "not_publicly_distributed" to "Private internal app — not distributed on the public stores.",
             "heading_about_app" to "About this app",
             "heading_app_information" to "App information",
 
@@ -248,6 +275,7 @@ object Strings {
             "section_service" to "الخدمات",
             "section_portfolio" to "معرض الأعمال",
             "section_experience" to "الخبرة",
+            "section_certificates" to "الشهادات",
             "section_contact" to "تواصل معي",
             "section_testimonial" to "الشهادات",
             "section_achievements" to "الإنجازات",
@@ -257,6 +285,7 @@ object Strings {
             "subtitle_service" to "ما أجيده",
             "subtitle_portfolio" to "أعمالي",
             "subtitle_experience" to "الخبرة العملية",
+            "subtitle_certificates" to "تدريب والتزام",
             "subtitle_contact" to "ابق على تواصل",
             "subtitle_testimonial" to "عملاء سعداء",
             "subtitle_achievements" to "الإنجازات الشخصية",
@@ -266,13 +295,15 @@ object Strings {
             "eyebrow_service" to "02 — الخدمات",
             "eyebrow_portfolio" to "03 — معرض الأعمال",
             "eyebrow_experience" to "04 — الخبرة",
-            "eyebrow_contact" to "05 — تواصل معي",
+            "eyebrow_certificates" to "05 — الشهادات",
+            "eyebrow_contact" to "06 — تواصل معي",
 
             // Section Main Titles
             "main_title_about" to "هندسة دقيقة.\nتصميم إبداعي.",
             "main_title_service" to "ما أقوم به.",
             "main_title_portfolio" to "أعمال مختارة.",
             "main_title_experience" to "سجل الإنجازات.",
+            "main_title_certificates" to "تدريب موثّق.",
 
             // About Stats
             "stat_label_apps_shipped" to "تطبيقات تم إطلاقها",
@@ -305,10 +336,15 @@ object Strings {
             "portfolio_titanium_gym" to "تيتانيوم جيم",
             "portfolio_orderk" to "اوردرك",
             "portfolio_serinekamal" to "سيرين كمال",
+            "portfolio_nourish_durham" to "NOURISH Durham",
+            "portfolio_topmedia" to "TopMedia",
+            "portfolio_orderkshop" to "أوردرك شوب",
+            "portfolio_orderkshop_delivery" to "أوردرك شوب - التوصيل",
 
             // Portfolio Categories
             "portfolio_cat_mobile_kotlin" to "تطبيق Android - Jetpack Compose",
             "portfolio_cat_mobile_cmp" to "تطبيق محمول - Compose Multiplatform",
+            "portfolio_cat_cross_platform_cmp" to "Compose Multiplatform - محمول/ويب",
             "portfolio_cat_mobile_flutter" to "تطبيق محمول - Flutter",
             "portfolio_cat_ui_ux" to "تصميم UI/UX",
 
@@ -340,7 +376,23 @@ object Strings {
             "dev_status_in_dev_suffix" to " (قيد التطوير)",
             "dev_status_in_testing_suffix" to " (قيد الاختبار)",
 
+            // Certificates
+            "certificate_issuer_hcp" to "Healthcare Compliance Pros",
+            "certificate_date_may_2026" to "مايو 2026",
+            "certificate_id_label" to "رقم الشهادة",
+            "certificate_view_link" to "عرض الشهادة ←",
+            "certificate_badge_alt" to "شارة الشهادة",
+            "certificate_hipaa_privacy" to "HIPAA Privacy",
+            "certificate_hipaa_privacy_desc" to "استخدام والإفصاح عن البيانات الصحية المحمية، وحقوق المرضى، والإبلاغ عن الخروقات.",
+            "certificate_hipaa_security" to "HIPAA Security",
+            "certificate_hipaa_security_desc" to "ضوابط إدارية ومادية وتقنية لحماية البيانات الصحية الإلكترونية — التحكم في الوصول والتشفير وسجلات التدقيق.",
+            "certificate_code_of_conduct" to "مدونة السلوك والامتثال",
+            "certificate_code_of_conduct_desc" to "برنامج الامتثال المؤسسي، والسرية، وتضارب المصالح، والإبلاغ عن الاحتيال والهدر وإساءة الاستخدام.",
+            "certificate_osha_safety" to "سلامة OSHA ومسببات الأمراض المنقولة بالدم",
+            "certificate_osha_safety_desc" to "مسببات الأمراض المنقولة بالدم، والتعريف بالمخاطر وفق GHS، ومعدات الوقاية، ولوائح النفايات الطبية.",
+
             // Portfolio Detail - Section headings
+            "not_publicly_distributed" to "تطبيق داخلي خاص — غير منشور على المتاجر العامة.",
             "heading_about_app" to "حول هذا التطبيق",
             "heading_app_information" to "معلومات التطبيق",
 
